@@ -1,0 +1,344 @@
+I"�<h2 id="시간-복잡도time-complexity">시간 복잡도(Time Complexity)</h2>
+
+<p>시간 복잡도는 입력값과 연산 수행 시간의 상관관계를 나타내는 척도이다. 일반적으로 시간 복잡도는 점근 표기법을 이용하여 나타내며, 알고리즘의 시간복잡도는 주로 빅오(Big-O) 표기법을 사용하여 나타낸다.</p>
+
+<p>$$
+\begin{aligned}
+   복잡한 정도: O(n) &lt; O(log(n)) &lt; O(nlog(n)) &lt; O(n^2)
+\end{aligned}
+$$</p>
+
+<h2 id="list">List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>Example</th>
+      <th>Time</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Index</td>
+      <td>l[i]</td>
+      <td>O(1)</td>
+      <td>인덱스로 값 찾기</td>
+    </tr>
+    <tr>
+      <td>Store</td>
+      <td>l[i] = 0</td>
+      <td>O(1)</td>
+      <td>인덱스로 데이터 저장</td>
+    </tr>
+    <tr>
+      <td>Length</td>
+      <td>len(l)</td>
+      <td>O(1)</td>
+      <td>리스트 길이</td>
+    </tr>
+    <tr>
+      <td>Append</td>
+      <td>l.append(5)</td>
+      <td>O(1)</td>
+      <td>리스드 뒤에 데이터 저장</td>
+    </tr>
+    <tr>
+      <td>Pop</td>
+      <td>l.pop()</td>
+      <td>O(1)</td>
+      <td>가장 뒤의 데이터 pop</td>
+    </tr>
+    <tr>
+      <td>Clear</td>
+      <td>l.clear()</td>
+      <td>O(1)</td>
+      <td>l = []</td>
+    </tr>
+    <tr>
+      <td>Slice</td>
+      <td>l[a:b]</td>
+      <td>O(b-a)</td>
+      <td>슬라이싱되는 요소들 수 만큼 비례</td>
+    </tr>
+    <tr>
+      <td>Extend</td>
+      <td>l.extend(…)</td>
+      <td>O(len(…))</td>
+      <td>확장되는 길이만큼</td>
+    </tr>
+    <tr>
+      <td>Construction</td>
+      <td>list(…)</td>
+      <td>O(len(…))</td>
+      <td>리스트 길이만큼</td>
+    </tr>
+    <tr>
+      <td>check ==, !=</td>
+      <td>l1 == l2</td>
+      <td>O(n)</td>
+      <td>전체 리스트가 동일한지 확인</td>
+    </tr>
+    <tr>
+      <td>Insert</td>
+      <td>l[a:b] = …</td>
+      <td>O(n)</td>
+      <td>데이터 삽입</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>del l[i]</td>
+      <td>O(n)</td>
+      <td>데이터 삭제</td>
+    </tr>
+    <tr>
+      <td>Containment</td>
+      <td>x in/not in l</td>
+      <td>O(n)</td>
+      <td>포함 여부 확인</td>
+    </tr>
+    <tr>
+      <td>Copy</td>
+      <td>l.copy()</td>
+      <td>O(n)</td>
+      <td>복제</td>
+    </tr>
+    <tr>
+      <td>Remove</td>
+      <td>l.remove(…)</td>
+      <td>O(n)</td>
+      <td>제거</td>
+    </tr>
+    <tr>
+      <td>Pop</td>
+      <td>l.pop(i)</td>
+      <td>O(n)</td>
+      <td>제거된 값 이후를 전부 한칸씩 당겨줘야함</td>
+    </tr>
+    <tr>
+      <td>Extreme value</td>
+      <td>min(l)/max(l)</td>
+      <td>O(n)</td>
+      <td>전체 데이터를 확인해야함</td>
+    </tr>
+    <tr>
+      <td>Reverse</td>
+      <td>l.reverse()</td>
+      <td>O(n)</td>
+      <td>뒤집기</td>
+    </tr>
+    <tr>
+      <td>Iteration</td>
+      <td>for v in l:</td>
+      <td>O(n)</td>
+      <td>전체 데이터 확인하므로</td>
+    </tr>
+    <tr>
+      <td>Sort</td>
+      <td>l.sort()</td>
+      <td>O(n Log n)</td>
+      <td>파이썬 기본 정렬 알고리즘</td>
+    </tr>
+    <tr>
+      <td>Multiply</td>
+      <td>k*l</td>
+      <td>O(kn)</td>
+      <td>리스트의 곱은 리스트 개수 늘어남</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="dictionary">Dictionary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>Example</th>
+      <th>Time</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Store</td>
+      <td>d[k] = v</td>
+      <td>O(1)</td>
+      <td>데이터 저장</td>
+    </tr>
+    <tr>
+      <td>Length</td>
+      <td>len(d)</td>
+      <td>O(1)</td>
+      <td>길이 출력</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>del d[k]</td>
+      <td>O(1)</td>
+      <td>요소 제거</td>
+    </tr>
+    <tr>
+      <td>get/setdefault</td>
+      <td>d.get(k)</td>
+      <td>O(1)</td>
+      <td>key에 따른 value 확인</td>
+    </tr>
+    <tr>
+      <td>Pop</td>
+      <td>d.pop(k)</td>
+      <td>O(1)</td>
+      <td>pop</td>
+    </tr>
+    <tr>
+      <td>Pop item</td>
+      <td>d.popitem()</td>
+      <td>O(1)</td>
+      <td>랜덤하게 선택해서 pop</td>
+    </tr>
+    <tr>
+      <td>Clear</td>
+      <td>d.clear()</td>
+      <td>O(1)</td>
+      <td>similar to s = {} or = dict()</td>
+    </tr>
+    <tr>
+      <td>View</td>
+      <td>d.keys()</td>
+      <td>O(1)</td>
+      <td>same for d.values() / 키값 전체 확인</td>
+    </tr>
+    <tr>
+      <td>Construction</td>
+      <td>dict(…)</td>
+      <td>O(len(…))</td>
+      <td>(key, value) 튜플 개수만큼</td>
+    </tr>
+    <tr>
+      <td>Iteration</td>
+      <td>for k in d:</td>
+      <td>O(N)</td>
+      <td>전체 딕셔너리 순회</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="set">Set</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>Example</th>
+      <th>Time</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Add</td>
+      <td>s.add(5)</td>
+      <td>O(1)</td>
+      <td>집합 요소 추가</td>
+    </tr>
+    <tr>
+      <td>Containment</td>
+      <td>x in/not in s</td>
+      <td>O(1)</td>
+      <td>포함 여부 확인</td>
+    </tr>
+    <tr>
+      <td>Remove</td>
+      <td>s.remove(..)</td>
+      <td>O(1)</td>
+      <td>요소 제거</td>
+    </tr>
+    <tr>
+      <td>Discard</td>
+      <td>s.discard(..)</td>
+      <td>O(1)</td>
+      <td>특정 요소 제거</td>
+    </tr>
+    <tr>
+      <td>Pop</td>
+      <td>s.pop()</td>
+      <td>O(1)</td>
+      <td>랜덤하게 하나 pop</td>
+    </tr>
+    <tr>
+      <td>Clear</td>
+      <td>s.clear()</td>
+      <td>O(1)</td>
+      <td>similar to s = set()</td>
+    </tr>
+    <tr>
+      <td>Construction</td>
+      <td>set(…)</td>
+      <td>O(len(…))</td>
+      <td>길이만큼</td>
+    </tr>
+    <tr>
+      <td>check ==, !=</td>
+      <td>s != t</td>
+      <td>O(len(s))</td>
+      <td>전체 요소 동일 여부 확인</td>
+    </tr>
+    <tr>
+      <td>&lt;=/&lt;</td>
+      <td>s &lt;= t</td>
+      <td>O(len(s))</td>
+      <td>부분집합 여부</td>
+    </tr>
+    <tr>
+      <td>&gt;=/&gt;</td>
+      <td>s &gt;= t</td>
+      <td>O(len(t))</td>
+      <td>부분집합 여부</td>
+    </tr>
+    <tr>
+      <td>Union</td>
+      <td>s, t</td>
+      <td>O(len(s)+len(t))</td>
+      <td>합집합</td>
+    </tr>
+    <tr>
+      <td>Intersection</td>
+      <td>s &amp; t</td>
+      <td>O(len(s)+len(t))</td>
+      <td>교집합</td>
+    </tr>
+    <tr>
+      <td>Difference</td>
+      <td>s - t</td>
+      <td>O(len(s)+len(t))</td>
+      <td>차집합</td>
+    </tr>
+    <tr>
+      <td>Symmetric Diff</td>
+      <td>s ^ t</td>
+      <td>O(len(s)+len(t))</td>
+      <td>여집합</td>
+    </tr>
+    <tr>
+      <td>Iteration</td>
+      <td>for v in s:</td>
+      <td>O(N)</td>
+      <td>전체 요소 순회</td>
+    </tr>
+    <tr>
+      <td>Copy</td>
+      <td>s.copy()</td>
+      <td>O(N)</td>
+      <td>복제</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://ko.wikipedia.org/wiki/%EC%8B%9C%EA%B0%84_%EB%B3%B5%EC%9E%A1%EB%8F%84">위키백과, 시간복잡도</a></li>
+  <li><a href="https://chancoding.tistory.com/43">파이썬 자료형 및 연산자의 시간 복잡도(Big-O) 총 정리</a></li>
+</ul>
+:ET
