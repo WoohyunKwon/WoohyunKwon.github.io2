@@ -63,3 +63,8 @@ End Sub
     Application.DisplayAlerts = False
     Sheets(1).Delete
 ```
+
+## References
+
+- [원하는 시트를 다른 엑셀 파일로 복사하기](https://ybworld.tistory.com/105)
+- [다른 엑셀 파일에서 원하는 시트 가져오기](https://ybworld.tistory.com/106)
