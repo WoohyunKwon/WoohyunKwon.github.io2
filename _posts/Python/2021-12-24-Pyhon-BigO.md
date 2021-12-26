@@ -17,11 +17,9 @@ tags: [Python, 파이썬, Big-O, O(n), 복잡도, 시간복잡도, 알고리즘,
 
 시간 복잡도는 입력값과 연산 수행 시간의 상관관계를 나타내는 척도이다. 일반적으로 시간 복잡도는 점근 표기법을 이용하여 나타내며, 알고리즘의 시간복잡도는 주로 빅오(Big-O) 표기법을 사용하여 나타낸다.
 
-$$
-\begin{aligned}
-   복잡한 정도: O(n) < O(log(n)) < O(nlog(n)) < O(n^2)
-\end{aligned}
-$$
+
+![Time-Complexity](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbMi9Ge%2FbtqCinZoy5c%2FGBOJgXYNHcEof0UWZkVZLK%2Fimg.png)
+출처: https://chancoding.tistory.com/43
 
 ## List
 
