@@ -1,0 +1,26 @@
+I"�<ul>
+  <li>
+    <p>테이블 구조 참조하기 DESC <code class="language-plaintext highlighter-rouge">DESC 테이블명;</code></p>
+  </li>
+  <li>
+    <p>테이블 데이터 읽어오기 SELECT <code class="language-plaintext highlighter-rouge">SELECT * FROM 테이블명;</code></p>
+  </li>
+  <li>검색 조건 지정하기 WHERE
+<code class="language-plaintext highlighter-rouge">SELECT 열1, 열2 FROM 테이블명 WHERE 조건식</code>
+    <ul>
+      <li>수치형: 1, 100, -3.3</li>
+      <li>문자형: “ABC”, “문자형”</li>
+      <li>시간형: ‘2021-12-27’, ‘2099-12-31 23:59:59’</li>
+      <li>NULL: IS NULL / IS NOT NULL</li>
+    </ul>
+  </li>
+  <li>조건 조합하기 AND, OR, NOR
+    <ul>
+      <li>AND는 OR에 비해 우선 순위가 높다</li>
+      <li>ex) SELECT * FROM sample WHERE a=1 OR a=2 AND b=1 OR b=2
+  == SELECT * FROM sample WHERE a=1 OR (a=2 AND b=1) OR b=2</li>
+    </ul>
+  </li>
+  <li>패턴 매칭(부분 검색) LIKE</li>
+</ul>
+:ET
