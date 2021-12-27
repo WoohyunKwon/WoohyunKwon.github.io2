@@ -28,7 +28,7 @@ tags: [Python, 파이썬, Big-O, O(n), 복잡도, 시간복잡도, 알고리즘,
 | Index | l[i]	| O(1)	| 인덱스로 값 찾기 | 
 | Store	| l[i] = 0	| O(1)	| 인덱스로 데이터 저장 |
 | Length | len(l)	| O(1)	| 리스트 길이 | 
-| Append | l.append(5)	| O(1)	| 리스드 뒤에 데이터 저장 | 
+| Append | l.append(5)	| O(1)	| 리스트 뒤에 데이터 저장 | 
 | Pop	| l.pop()	| O(1)	| 가장 뒤의 데이터 pop | 
 | Clear	| l.clear()	| O(1)	| l = [] | 
 | Slice	| l[a:b] | O(b-a) | 슬라이싱되는 요소들 수 만큼 비례 |

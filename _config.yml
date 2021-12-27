@@ -43,7 +43,7 @@ author: Woohyun Kwon
 copyright: "Unpublished Work (cleft) 2021-{currentYear} {author}"
 
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
+  Write an awesome description for your new site here. You can edit this 
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
 
@@ -53,14 +53,12 @@ favicon: "" # the favicon for your site
 
 # Yat date format
 # refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
-yat:
-  date_format: "%b %d, %Y"
 
 # If you want more debug log, you can set true
 # debug: false
 
 # If you don't want transparent header, you can set false
-# header_transparent: true
+header_transparent: false
 
 # If you want to change the content width, you can set to another value
 # content_width: "920px"
@@ -80,7 +78,7 @@ yat:
 # theme_color: snowwhite
 #
 # Custom color as below:
-# theme_color: "#882250"
+theme_color: "#882250"
 
 # You can choose a brand color
 # Default brand colors as below:

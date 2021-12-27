@@ -39,7 +39,7 @@
       <td>Append</td>
       <td>l.append(5)</td>
       <td>O(1)</td>
-      <td>리스드 뒤에 데이터 저장</td>
+      <td>리스트 뒤에 데이터 저장</td>
     </tr>
     <tr>
       <td>Pop</td>
