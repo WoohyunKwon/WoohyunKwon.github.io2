@@ -1,0 +1,451 @@
+I"�6<h3 id="desc">DESC</h3>
+<pre><code class="language-MySQL">DESC 테이블명;
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DESC</code>를 사용하여 테이블의 구조 참조할 수 있다.</li>
+</ul>
+
+<h3 id="select">SELECT</h3>
+<pre><code class="language-MySQL">SELECT * FROM 테이블명;
+</code></pre>
+<ul>
+  <li>테이블 데이터 읽어오기</li>
+</ul>
+
+<h3 id="where">WHERE</h3>
+<ul>
+  <li>검색 조건 지정하기 
+<code class="language-plaintext highlighter-rouge">SELECT 열1, 열2 FROM 테이블명 WHERE 조건식</code>
+    <ul>
+      <li>수치형: 1, 100, -3.3</li>
+      <li>문자형: “ABC”, “문자형”</li>
+      <li>시간형: ‘2021-12-27’, ‘2099-12-31 23:59:59’</li>
+      <li>NULL: IS NULL / IS NOT NULL</li>
+    </ul>
+  </li>
+  <li>조건 조합하기 AND, OR, NOR
+    <ul>
+      <li>AND는 OR에 비해 우선 순위가 높다</li>
+      <li>ex) SELECT * FROM sample WHERE a=1 OR a=2 AND b=1 OR b=2
+  == SELECT * FROM sample WHERE a=1 OR (a=2 AND b=1) OR b=2</li>
+    </ul>
+  </li>
+  <li>
+    <p>패턴 매칭(부분 검색) LIKE</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>no</th>
+          <th>text</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>"=" 연산자로 검색하는 경우 셀의 데이터 값이 완전히 동일한지 비교한다</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>반면, LIKE 연산자는 일부분을 비교할 수 있다</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>"%"는 임의의 문자열</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>"_"는 임의의 문자 하나</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>"*"는 LIKE 에서 사용 불가</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><code class="language-plaintext highlighter-rouge">SELECT * FROM sample WHERE text LIKE '%임의%';</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>no</th>
+          <th>text</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3</td>
+          <td>"%"는 임의의 문자열</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>"_"는 임의의 문자 하나</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="정렬">정렬</h2>
+<h3 id="order-by">ORDER BY</h3>
+<pre><code class="language-MySQL">&lt;오름차순&gt;
+SELECT 열명 FROM 테이블명 (WHERE 조건식) ORDER BY 열명 (ASC)
+
+&lt;내림차순&gt;
+SELECT 열명 FROM 테이블명 (WHERE 조건식) ORDER BY 열명 DESC
+
+&lt;복수 열 정렬&gt;
+SELECT 열명 FROM 테이블명 (WHERE 조건식) ORDER BY 열1 ASC/DESC, 열2 ASC/DESC, ...
+
+&lt;NULL값 포함&gt;
+NULL값을 포함하는 행은 가장 먼저 표시되거나(ASC) 가장 나중에 표시된다(DESC)
+</code></pre>
+
+<h3 id="limit">LIMIT</h3>
+<pre><code class="language-MySQL">`SELECT 열명 FROM 테이블명 (WHERE 조건식 ORDER BY 열명) LIMIT 행수 [OFFSET 시작행];
+</code></pre>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">LIMIT</code>를 사용하면 결과 행을 제한할 수 있다.</li>
+  <li>표준 SQL 아님. MySQL과 PostgreSQL에서 사용 가능</li>
+</ul>
+
+<h2 id="수치-연산">수치 연산</h2>
+<ul>
+  <li>산술연산: +, -, *, /, %, MOD</li>
+  <li>NULL 값을 연산하면 결과는 NULL이 된다.</li>
+  <li>함수: <code class="language-plaintext highlighter-rouge">함수명 (인수1, 인수2, ...)</code></li>
+  <li>반올림 ROUND: <code class="language-plaintext highlighter-rouge">SELECT amount, ROUND(amount, 1) FROM sample;</code></li>
+  <li>
+    <p>ex) 새로운 열(price * quantity) 만들고 열명(amount) 정하기 <code class="language-plaintext highlighter-rouge">SELECT *, price * quantity AS amount FROM sample;</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>no</th>
+          <th>price</th>
+          <th>quantity</th>
+          <th>amount(=price*quantity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>100</td>
+          <td>10</td>
+          <td>1000</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>230</td>
+          <td>24</td>
+          <td>5520</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>1200</td>
+          <td>1</td>
+          <td>1200</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="문자열-연산">문자열 연산</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>연산자</th>
+      <th>연산</th>
+      <th>데이터베이스</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>+</td>
+      <td>문자열 결합</td>
+      <td>SQL Server</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td>문자열 결합</td>
+      <td>Oracle, DB2, PostgreSQL</td>
+    </tr>
+    <tr>
+      <td>CONCAT</td>
+      <td>문자열 결합</td>
+      <td>MySQL</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="concat">CONCAT()</h3>
+
+<ul>
+  <li>전달받은 문자열을 모두 결합하여 하나의 문자열로 반환</li>
+  <li>전달받은 문자열 중 하나라도 NULL이 존재하면 NULL을 반환</li>
+</ul>
+
+<pre><code class="language-MySQL">SELECT CONCAT(quantity, unit) FROM sample;
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>no</th>
+      <th>price</th>
+      <th>quantity</th>
+      <th>unit</th>
+      <th> </th>
+      <th>CONCAT(quantity, unit)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>100</td>
+      <td>10</td>
+      <td>개</td>
+      <td>-&gt;</td>
+      <td>10개</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>230</td>
+      <td>24</td>
+      <td>캔</td>
+      <td>^^</td>
+      <td>24캔</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1200</td>
+      <td>1</td>
+      <td>장</td>
+      <td>^^</td>
+      <td>1장</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="substring">SUBSTRING</h3>
+
+<p>문자열의 일부분을 계산해서 반환해주는 함수.</p>
+
+<pre><code class="language-MySQL">&lt;앞 4자리(년) 추출&gt;
+SUBSTRING('20140125001',1,4) -&gt; '2014'
+
+&lt;5째 자리부터 2자리(월) 추출&gt;
+SUBSTRING('20140125001', 5, 2) -&gt; '01'
+</code></pre>
+
+<h3 id="trim">TRIM</h3>
+
+<p>문자열의 앞뒤로 여분의 스페이스가 있을 경우 이를 제거해주는 함수로 문자열 도중에 존재하는 스페이스는 제거되지 않는다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRIM('ABC    ') -&gt; ABC
+</code></pre></div></div>
+
+<h4 id="character_length">CHARACTER_LENGTH</h4>
+
+<p>함수의 길이를 계산해 돌려주는 함수</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>문자세트</th>
+      <th>문자수</th>
+      <th>바이트 수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EUC_KR</td>
+      <td>12</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>UTF-8</td>
+      <td>12</td>
+      <td>26</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="날짜-연산">날짜 연산</h3>
+
+<ul>
+  <li>
+    <p>시스템 날짜 확인하기
+  <code class="language-plaintext highlighter-rouge">SELECT CURRENT_TIMESTAMP;</code></p>
+  </li>
+  <li>
+    <p>날짜 서식 바꾸기
+  <code class="language-plaintext highlighter-rouge">TO_DATE('2021/12/27', 'YYYY/MM/DD')</code></p>
+  </li>
+  <li>
+    <p>날짜 변경하기</p>
+    <pre><code class="language-MySQL">  &lt;날짜를 연산해 시스템 날짜의 1일 후를 검색&gt;
+  SELECT CURRENT_DATE + INTERVAL 1 DAY; -&gt; 2021-12-28
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="case">CASE</h3>
+
+<p>RDBMS에 기본적으로 내장되어있는 함수가 아닌 사용자 지정 함수를 작성하고 싶을 때 사용한다</p>
+
+<pre><code class="language-MySQL">&lt;기본형&gt;
+CASE WHEN 조건식1 THEN 식1
+    [WHEN 조건식2 THEN 식2]
+    [ELSE 식3]
+END
+</code></pre>
+
+<pre><code class="language-MySQL">&lt;성별 코드 변환하기(검색 CASE)&gt;
+SELECT a AS "코드",
+CASE
+    WHEN a = 1 THEN '남자'
+    WHEN a = 2 THEN '여자'
+    ELSE '미지정'
+END AS "성별" FROM sample;
+</code></pre>
+
+<ul>
+  <li>ELSE를 생략하면 ELSE NULL이 된다</li>
+</ul>
+
+<h3 id="coalesce">COALESCE</h3>
+
+<p>여러 개의 인수를 지정할 수 있고, 주어진 인수 가운데 NULL이 아닌 값에 대해 가장 먼저 지정된 인수의 값을 반환한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT a, COALESCE(a,0) FROM sample;
+</code></pre></div></div>
+
+<h2 id="데이터-추가-삭제-갱신">데이터 추가, 삭제, 갱신</h2>
+
+<h3 id="insert">INSERT</h3>
+
+<p>INSERT를 사용하여 테이블에 행을 추가할 수 있다.</p>
+
+<pre><code class="language-MySQL">INSERT INTO 테이블명 VALUES(값1, 값2, ...)
+</code></pre>
+<h3 id="delete">DELETE</h3>
+
+<p>데이터베이스의 테이블에서 행을 삭제하기 위해서 DELETE 명령을 사용한다.</p>
+
+<pre><code class="language-MySQL">DELETE FROM 테이블명 WHERE 조건식
+</code></pre>
+
+<h3 id="update">UPDATE</h3>
+
+<p>테이블의 셀에 저장되어 있는 값을 갱신하려면 UPDATE 명령을 사용한다.</p>
+
+<pre><code class="language-MySQL">UPDATE 테이블명 SET 열1 = 값1, 열2 = 값2, ... WHERE 조건식
+</code></pre>
+
+<h2 id="그룹화">그룹화</h2>
+
+<h3 id="집계-함수-count-sum-avg-min-max">집계 함수 COUNT, SUM, AVG, MIN, MAX</h3>
+
+<pre><code class="language-MySQL">COUNT([ALL|DISTINCT] 열) # 테이블의 행 개수를 구할 수 있다
+SUM([ALL|DISTINCT] 열)
+AVG([ALL|DISTINCT] 열)
+MIN([ALL|DISTINCT] 열)
+MAX([ALL|DISTINCT] 열)
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">COUNT</code> 명령은 NULL을 제외하고 계산한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">DISTINCT</code>를 사용하여 중복을 제거할 수 있다.</li>
+  <li>집계함수에서 <code class="language-plaintext highlighter-rouge">WHERE</code>은 사용할 수 없다.</li>
+</ul>
+
+<h3 id="group-by">GROUP BY</h3>
+
+<pre><code class="language-MySQL">SELECT * FROM 테이블명 GROUP BY 열1, 열2, ...;
+SELECT 열명, COUNT(열명), SUM(열명) FROM 테이블명 GROUP BY 열명;
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GROUP BY</code> 구를 지정하는 경우에는 집계함수와 함께 사용하지 않으면 <code class="language-plaintext highlighter-rouge">DISTINCT</code>와 차이가 없다. 이유는 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 구로 그룹화된 각각의 그룹이 하나의 집합으로서 집계함수의 인수로 넘겨지기 때문이다.</li>
+</ul>
+
+<h3 id="having">HAVING</h3>
+
+<pre><code class="language-MySQL">SELECT 열명, 집계함수 FROM 테이블명 GORUP BY 열명 HAVING 집계함수;
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">WHERE</code> 구로 행을 검색하는 처리가 <code class="language-plaintext highlighter-rouge">GROUP BY</code>로 그룹화하는 처리보다 순서상 앞서기 때문에 둘을 같이 쓸 수 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">HAVING</code> 구는 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 뒤에 위치하여 <code class="language-plaintext highlighter-rouge">WHERE</code> 구와 동일하게 조건식을 지정할 수 있다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;내부처리 순서&gt;
+WHERE - GROUP BY - HAVING - SELECT - ORDER BY
+</code></pre></div></div>
+
+<h2 id="서브쿼리">서브쿼리</h2>
+
+<h3 id="subquery">SubQuery</h3>
+
+<ul>
+  <li>쿼리문 안에 쿼리문이 들어 있는 것</li>
+  <li>SELECT, FROM, WHERE 등 다양하게 기술할 수 있음</li>
+  <li>서브쿼리의 결과가 2개 이상이 되면 에러가 발생함</li>
+</ul>
+
+<h4 id="최솟값을-가지는-행-삭제하기">최솟값을 가지는 행 삭제하기</h4>
+<pre><code class="language-MySQL">DELETE FROM sample WHERE a = (SELECT MIN(a) FROM sample);
+</code></pre>
+
+<h4 id="select-서브쿼리">SELECT 서브쿼리</h4>
+<pre><code class="language-MySQL">SELECT
+    (SELECT COUNT(*) FROM 테이블1) AS 열 이름1,
+    (SELECT COUNT(*) FROM 테이블2) AS 열 이름2;
+</code></pre>
+
+<h4 id="set-서브쿼리">SET 서브쿼리</h4>
+<pre><code class="language-MySQL">UPDATE 테이블명 SET a = (SELECT MAX(a) FROM 테이블명);
+</code></pre>
+
+<h2 id="상관관계-서브쿼리-correlated-subquery">상관관계 서브쿼리 Correlated Subquery</h2>
+
+<ul>
+  <li>일반적인 서브쿼리는 딱 한번 서브쿼리가 먼저 실행이 되고 그 결과값을 갖고 바깥쪽의 메인 쿼리가 실행이 된다.</li>
+  <li>반면, 상관관계 서브쿼리에서는 메인 쿼리의 열 중에 하나가 서브쿼리의 조건에 이용되고, 그 결과는 다시 기존 쿼리에 영향을 준다.</li>
+</ul>
+
+<h3 id="exists">EXISTS</h3>
+
+<pre><code class="language-MySQL">&lt;EXISTS를 사용해 '있음'으로 갱신하기&gt;
+UPDATE smaple SET a = '있음' WHERE
+    EXISTS (SELECT * FROM smaple WHERE no2 = no);
+
+&lt;NOT EXISTS를 사용해 '없음'으로 갱신하기&gt;
+UPDATE smaple SET a = '없음' WHERE
+    NOT EXISTS (SELECT * FROM smaple WHERE no2 = no);
+</code></pre>
+<ul>
+  <li>서브쿼리를 사용해 검색할 때 ‘데이터가 존재하는지 아닌지’ 판별하기 위해 사용한다.</li>
+</ul>
+
+<h3 id="in">IN</h3>
+
+<pre><code class="language-MySQL">열 이름 IN (조건문)
+</code></pre>
+
+<ul>
+  <li>스칼라 값끼리 비교할 때는 ‘=’ 연산자를 이용한다.</li>
+  <li>이산적인 값의 조건에서는 IN()을 사용한다.</li>
+</ul>
+
+<h2 id="references">REFERENCES</h2>
+<ul>
+  <li>SQL첫걸음</li>
+  <li><a href="https://www.youtube.com/watch?v=vgIc4ctNFbc&amp;list=WL&amp;index=39&amp;t=370s">MySQL 데이터베이스 한번에 끝내기</a></li>
+</ul>
+:ET
