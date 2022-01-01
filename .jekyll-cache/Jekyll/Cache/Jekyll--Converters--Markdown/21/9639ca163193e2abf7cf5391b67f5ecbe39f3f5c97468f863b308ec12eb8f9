@@ -1,0 +1,77 @@
+I"�
+<h2 id="문제">문제</h2>
+<p>크기가 N인 수열 A = A1, A2, …, AN이 있다. 수열의 각 원소 Ai에 대해서 오큰수 NGE(i)를 구하려고 한다. Ai의 오큰수는 오른쪽에 있으면서 Ai보다 큰 수 중에서 가장 왼쪽에 있는 수를 의미한다. 그러한 수가 없는 경우에 오큰수는 -1이다.</p>
+
+<p>예를 들어, A = [3, 5, 2, 7]인 경우 NGE(1) = 5, NGE(2) = 7, NGE(3) = 7, NGE(4) = -1이다. A = [9, 5, 4, 8]인 경우에는 NGE(1) = -1, NGE(2) = 8, NGE(3) = 8, NGE(4) = -1이다.</p>
+
+<h2 id="입력">입력</h2>
+<p>첫째 줄에 수열 A의 크기 N (1 ≤ N ≤ 1,000,000)이 주어진다. 둘째 줄에 수열 A의 원소 A1, A2, …, AN (1 ≤ Ai ≤ 1,000,000)이 주어진다.</p>
+
+<h2 id="출력">출력</h2>
+<p>총 N개의 수 NGE(1), NGE(2), …, NGE(N)을 공백으로 구분해 출력한다.</p>
+
+<h2 id="예제-입력-1">예제 입력 1</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4
+3 5 2 7
+</code></pre></div></div>
+
+<h2 id="예제-출력-1">예제 출력 1</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5 7 7 -1
+</code></pre></div></div>
+
+<h2 id="예제-입력-2">예제 입력 2</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4
+9 5 4 8
+</code></pre></div></div>
+
+<h2 id="예제-출력-2">예제 출력 2</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-1 8 8 -1
+</code></pre></div></div>
+
+<h2 id="코드1-시간초과">코드1: 시간초과</h2>
+
+<pre><code class="language-Python">import sys
+
+N = int(sys.stdin.readline())
+lst = list(map(int, sys.stdin.readline().split()))
+NGE = [-1] * N
+
+for i in range(len(lst)-1):
+  for j in range(i+1, len(lst)):
+    if lst[i] &lt; lst[j]:
+      NGE[i] = lst[j]
+      break
+
+print(*NGE)
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">for</code>을 2번 사용하였더니 $O(n^2)$가 되어 시간초과로 실패하였다. 시간복잡도를 단축시키는게 문제의 포인트가 되겠다.</p>
+
+<h2 id="코드2-성공">코드2: 성공</h2>
+
+<pre><code class="language-Python">import sys
+N = int(input())
+lst = list(map(int, sys.stdin.readline().split()))
+NGE = [-1] * N
+stack = []
+
+for i in range(N):
+    while stack and lst[stack[-1]] &lt; lst[i]:
+        answer[stack.pop()] = lst[i]
+    stack.append(i)
+
+print(*NGE)
+</code></pre>
+
+<p>결국 스택을 사용하여 시간을 줄일 수 있었다.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.acmicpc.net/problem/17298">백준 17298 오큰수</a></li>
+</ul>
+:ET

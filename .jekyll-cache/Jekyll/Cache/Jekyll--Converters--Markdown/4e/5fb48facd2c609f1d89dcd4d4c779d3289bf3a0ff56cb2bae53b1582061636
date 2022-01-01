@@ -1,0 +1,780 @@
+I"�l<h2 id="기본-문법">기본 문법</h2>
+
+<h3 id="desc">DESC</h3>
+<pre><code class="language-MySQL">DESC 테이블명;
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DESC</code>를 사용하여 테이블의 구조 참조할 수 있다.</li>
+</ul>
+
+<h3 id="select">SELECT</h3>
+<pre><code class="language-MySQL">SELECT * FROM 테이블명;
+</code></pre>
+<ul>
+  <li>테이블 데이터 읽어오기</li>
+</ul>
+
+<h3 id="where">WHERE</h3>
+<ul>
+  <li>검색 조건 지정하기 
+<code class="language-plaintext highlighter-rouge">SELECT 열1, 열2 FROM 테이블명 WHERE 조건식</code>
+    <ul>
+      <li>수치형: 1, 100, -3.3</li>
+      <li>문자형: “ABC”, “문자형”</li>
+      <li>시간형: ‘2021-12-27’, ‘2099-12-31 23:59:59’</li>
+      <li>NULL: IS NULL / IS NOT NULL</li>
+    </ul>
+  </li>
+  <li>조건 조합하기 AND, OR, NOR
+    <ul>
+      <li>AND는 OR에 비해 우선 순위가 높다</li>
+      <li>ex) SELECT * FROM sample WHERE a=1 OR a=2 AND b=1 OR b=2
+  == SELECT * FROM sample WHERE a=1 OR (a=2 AND b=1) OR b=2</li>
+    </ul>
+  </li>
+  <li>
+    <p>패턴 매칭(부분 검색) LIKE</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>no</th>
+          <th>text</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>"=" 연산자로 검색하는 경우 셀의 데이터 값이 완전히 동일한지 비교한다</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>반면, LIKE 연산자는 일부분을 비교할 수 있다</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>"%"는 임의의 문자열</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>"_"는 임의의 문자 하나</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>"*"는 LIKE 에서 사용 불가</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><code class="language-plaintext highlighter-rouge">SELECT * FROM sample WHERE text LIKE '%임의%';</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>no</th>
+          <th>text</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3</td>
+          <td>"%"는 임의의 문자열</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>"_"는 임의의 문자 하나</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="정렬">정렬</h2>
+<h3 id="order-by">ORDER BY</h3>
+<pre><code class="language-MySQL">&lt;오름차순&gt;
+SELECT 열명 FROM 테이블명 (WHERE 조건식) ORDER BY 열명 (ASC)
+
+&lt;내림차순&gt;
+SELECT 열명 FROM 테이블명 (WHERE 조건식) ORDER BY 열명 DESC
+
+&lt;복수 열 정렬&gt;
+SELECT 열명 FROM 테이블명 (WHERE 조건식) ORDER BY 열1 ASC/DESC, 열2 ASC/DESC, ...
+
+&lt;NULL값 포함&gt;
+NULL값을 포함하는 행은 가장 먼저 표시되거나(ASC) 가장 나중에 표시된다(DESC)
+</code></pre>
+
+<h3 id="limit">LIMIT</h3>
+<pre><code class="language-MySQL">`SELECT 열명 FROM 테이블명 (WHERE 조건식 ORDER BY 열명) LIMIT 행수 [OFFSET 시작행];
+</code></pre>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">LIMIT</code>를 사용하면 결과 행을 제한할 수 있다.</li>
+  <li>표준 SQL 아님. MySQL과 PostgreSQL에서 사용 가능</li>
+</ul>
+
+<h2 id="수치-연산">수치 연산</h2>
+<ul>
+  <li>산술연산: +, -, *, /, %, MOD</li>
+  <li>NULL 값을 연산하면 결과는 NULL이 된다.</li>
+  <li>함수: <code class="language-plaintext highlighter-rouge">함수명 (인수1, 인수2, ...)</code></li>
+  <li>반올림 ROUND: <code class="language-plaintext highlighter-rouge">SELECT amount, ROUND(amount, 1) FROM sample;</code></li>
+  <li>
+    <p>ex) 새로운 열(price * quantity) 만들고 열명(amount) 정하기 <code class="language-plaintext highlighter-rouge">SELECT *, price * quantity AS amount FROM sample;</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>no</th>
+          <th>price</th>
+          <th>quantity</th>
+          <th>amount(=price*quantity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>100</td>
+          <td>10</td>
+          <td>1000</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>230</td>
+          <td>24</td>
+          <td>5520</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>1200</td>
+          <td>1</td>
+          <td>1200</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="문자열-연산">문자열 연산</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>연산자</th>
+      <th>연산</th>
+      <th>데이터베이스</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>+</td>
+      <td>문자열 결합</td>
+      <td>SQL Server</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td>문자열 결합</td>
+      <td>Oracle, DB2, PostgreSQL</td>
+    </tr>
+    <tr>
+      <td>CONCAT</td>
+      <td>문자열 결합</td>
+      <td>MySQL</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="concat">CONCAT()</h3>
+
+<ul>
+  <li>전달받은 문자열을 모두 결합하여 하나의 문자열로 반환</li>
+  <li>전달받은 문자열 중 하나라도 NULL이 존재하면 NULL을 반환</li>
+</ul>
+
+<pre><code class="language-MySQL">SELECT CONCAT(quantity, unit) FROM sample;
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>no</th>
+      <th>price</th>
+      <th>quantity</th>
+      <th>unit</th>
+      <th> </th>
+      <th>CONCAT(quantity, unit)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>100</td>
+      <td>10</td>
+      <td>개</td>
+      <td>-&gt;</td>
+      <td>10개</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>230</td>
+      <td>24</td>
+      <td>캔</td>
+      <td>^^</td>
+      <td>24캔</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1200</td>
+      <td>1</td>
+      <td>장</td>
+      <td>^^</td>
+      <td>1장</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="substring">SUBSTRING</h3>
+
+<p>문자열의 일부분을 계산해서 반환해주는 함수.</p>
+
+<pre><code class="language-MySQL">&lt;앞 4자리(년) 추출&gt;
+SUBSTRING('20140125001',1,4) -&gt; '2014'
+
+&lt;5째 자리부터 2자리(월) 추출&gt;
+SUBSTRING('20140125001', 5, 2) -&gt; '01'
+</code></pre>
+
+<h3 id="trim">TRIM</h3>
+
+<p>문자열의 앞뒤로 여분의 스페이스가 있을 경우 이를 제거해주는 함수로 문자열 도중에 존재하는 스페이스는 제거되지 않는다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRIM('ABC    ') -&gt; ABC
+</code></pre></div></div>
+
+<h4 id="character_length">CHARACTER_LENGTH</h4>
+
+<p>함수의 길이를 계산해 돌려주는 함수</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>문자세트</th>
+      <th>문자수</th>
+      <th>바이트 수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EUC_KR</td>
+      <td>12</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>UTF-8</td>
+      <td>12</td>
+      <td>26</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="날짜-연산">날짜 연산</h2>
+
+<h3 id="current_timestamp">CURRENT_TIMESTAMP</h3>
+
+<pre><code class="language-MySQL">SELECT CURRENT_TIMESTAMP;
+</code></pre>
+
+<ul>
+  <li>시스템 날짜 확인하기</li>
+</ul>
+
+<h3 id="to_date">TO_DATE</h3>
+
+<pre><code class="language-MySQL">TO_DATE('2021/12/27', 'YYYY/MM/DD')
+</code></pre>
+
+<ul>
+  <li>날짜 서식 바꾸기</li>
+</ul>
+
+<h3 id="날짜-변경하기">날짜 변경하기</h3>
+<pre><code class="language-MySQL">&lt;날짜를 연산해 시스템 날짜의 1일 후를 검색&gt;
+SELECT CURRENT_DATE + INTERVAL 1 DAY; -&gt; 2021-12-28
+</code></pre>
+
+<h3 id="case">CASE</h3>
+
+<p>RDBMS에 기본적으로 내장되어있는 함수가 아닌 사용자 지정 함수를 작성하고 싶을 때 사용한다</p>
+
+<pre><code class="language-MySQL">&lt;기본형&gt;
+CASE WHEN 조건식1 THEN 식1
+    [WHEN 조건식2 THEN 식2]
+    [ELSE 식3]
+END
+</code></pre>
+
+<pre><code class="language-MySQL">&lt;성별 코드 변환하기(검색 CASE)&gt;
+SELECT a AS "코드",
+CASE
+    WHEN a = 1 THEN '남자'
+    WHEN a = 2 THEN '여자'
+    ELSE '미지정'
+END AS "성별" FROM sample;
+</code></pre>
+
+<ul>
+  <li>ELSE를 생략하면 ELSE NULL이 된다</li>
+</ul>
+
+<h3 id="coalesce">COALESCE</h3>
+
+<p>여러 개의 인수를 지정할 수 있고, 주어진 인수 가운데 NULL이 아닌 값에 대해 가장 먼저 지정된 인수의 값을 반환한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT a, COALESCE(a,0) FROM sample;
+</code></pre></div></div>
+
+<h2 id="데이터-추가-삭제-갱신">데이터 추가, 삭제, 갱신</h2>
+
+<h3 id="insert">INSERT</h3>
+
+<p>INSERT를 사용하여 테이블에 행을 추가할 수 있다.</p>
+
+<pre><code class="language-MySQL">INSERT INTO 테이블명 VALUES(값1, 값2, ...)
+</code></pre>
+<h3 id="delete">DELETE</h3>
+
+<p>데이터베이스의 테이블에서 행을 삭제하기 위해서 DELETE 명령을 사용한다.</p>
+
+<pre><code class="language-MySQL">DELETE FROM 테이블명 WHERE 조건식
+</code></pre>
+
+<h3 id="update">UPDATE</h3>
+
+<p>테이블의 셀에 저장되어 있는 값을 갱신하려면 UPDATE 명령을 사용한다.</p>
+
+<pre><code class="language-MySQL">UPDATE 테이블명 SET 열1 = 값1, 열2 = 값2, ... WHERE 조건식
+</code></pre>
+
+<h2 id="그룹화">그룹화</h2>
+
+<h3 id="집계-함수-count-sum-avg-min-max">집계 함수 COUNT, SUM, AVG, MIN, MAX</h3>
+
+<pre><code class="language-MySQL">COUNT([ALL|DISTINCT] 열) # 테이블의 행 개수를 구할 수 있다
+SUM([ALL|DISTINCT] 열)
+AVG([ALL|DISTINCT] 열)
+MIN([ALL|DISTINCT] 열)
+MAX([ALL|DISTINCT] 열)
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">COUNT</code> 명령은 NULL을 제외하고 계산한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">DISTINCT</code>를 사용하여 중복을 제거할 수 있다.</li>
+  <li>집계함수에서 <code class="language-plaintext highlighter-rouge">WHERE</code>은 사용할 수 없다.</li>
+</ul>
+
+<h3 id="group-by">GROUP BY</h3>
+
+<pre><code class="language-MySQL">SELECT * FROM 테이블명 GROUP BY 열1, 열2, ...;
+SELECT 열명, COUNT(열명), SUM(열명) FROM 테이블명 GROUP BY 열명;
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GROUP BY</code> 구를 지정하는 경우에는 집계함수와 함께 사용하지 않으면 <code class="language-plaintext highlighter-rouge">DISTINCT</code>와 차이가 없다. 이유는 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 구로 그룹화된 각각의 그룹이 하나의 집합으로서 집계함수의 인수로 넘겨지기 때문이다.</li>
+</ul>
+
+<h3 id="having">HAVING</h3>
+
+<pre><code class="language-MySQL">SELECT 열명, 집계함수 FROM 테이블명 GORUP BY 열명 HAVING 집계함수;
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">WHERE</code> 구로 행을 검색하는 처리가 <code class="language-plaintext highlighter-rouge">GROUP BY</code>로 그룹화하는 처리보다 순서상 앞서기 때문에 둘을 같이 쓸 수 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">HAVING</code> 구는 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 뒤에 위치하여 <code class="language-plaintext highlighter-rouge">WHERE</code> 구와 동일하게 조건식을 지정할 수 있다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;내부처리 순서&gt;
+WHERE - GROUP BY - HAVING - SELECT - ORDER BY
+</code></pre></div></div>
+
+<h2 id="서브쿼리">서브쿼리</h2>
+
+<h3 id="subquery">SubQuery</h3>
+
+<ul>
+  <li>쿼리문 안에 쿼리문이 들어 있는 것</li>
+  <li>SELECT, FROM, WHERE 등 다양하게 기술할 수 있음</li>
+  <li>서브쿼리의 결과가 2개 이상이 되면 에러가 발생함</li>
+</ul>
+
+<h4 id="최솟값을-가지는-행-삭제하기">최솟값을 가지는 행 삭제하기</h4>
+<pre><code class="language-MySQL">DELETE FROM sample WHERE a = (SELECT MIN(a) FROM sample);
+</code></pre>
+
+<h4 id="select-서브쿼리">SELECT 서브쿼리</h4>
+<pre><code class="language-MySQL">SELECT
+    (SELECT COUNT(*) FROM 테이블1) AS 열 이름1,
+    (SELECT COUNT(*) FROM 테이블2) AS 열 이름2;
+</code></pre>
+
+<h4 id="set-서브쿼리">SET 서브쿼리</h4>
+<pre><code class="language-MySQL">UPDATE 테이블명 SET a = (SELECT MAX(a) FROM 테이블명);
+</code></pre>
+
+<h2 id="상관관계-서브쿼리-correlated-subquery">상관관계 서브쿼리 Correlated Subquery</h2>
+
+<ul>
+  <li>일반적인 서브쿼리는 딱 한번 서브쿼리가 먼저 실행이 되고 그 결과값을 갖고 바깥쪽의 메인 쿼리가 실행이 된다.</li>
+  <li>반면, 상관관계 서브쿼리에서는 메인 쿼리의 열 중에 하나가 서브쿼리의 조건에 이용되고, 그 결과는 다시 기존 쿼리에 영향을 준다.</li>
+</ul>
+
+<h3 id="exists">EXISTS</h3>
+
+<pre><code class="language-MySQL">&lt;EXISTS를 사용해 '있음'으로 갱신하기&gt;
+UPDATE smaple SET a = '있음' WHERE
+    EXISTS (SELECT * FROM smaple WHERE no2 = no);
+
+&lt;NOT EXISTS를 사용해 '없음'으로 갱신하기&gt;
+UPDATE smaple SET a = '없음' WHERE
+    NOT EXISTS (SELECT * FROM smaple WHERE no2 = no);
+</code></pre>
+<ul>
+  <li>서브쿼리를 사용해 검색할 때 ‘데이터가 존재하는지 아닌지’ 판별하기 위해 사용한다.</li>
+</ul>
+
+<h3 id="in">IN</h3>
+
+<pre><code class="language-MySQL">열 이름 IN (조건문)
+</code></pre>
+
+<ul>
+  <li>스칼라 값끼리 비교할 때는 ‘=’ 연산자를 이용한다.</li>
+  <li>이산적인 값의 조건에서는 IN()을 사용한다.</li>
+</ul>
+
+<h2 id="데이터베이스-객체">데이터베이스 객체</h2>
+
+<p>데이터베이스 객체란 테이블이나 뷰, 인덱스 등 데이터베이스 내에 정의하는 모든 것을 일컫는다. (데이터베이스) 객체는 데이터베이스 내에 실체를 가지는 어떤 것을 말한다.</p>
+
+<p>반면, <code class="language-plaintext highlighter-rouge">SELECT</code>나 <code class="language-plaintext highlighter-rouge">INSERT</code> 등은 클라이언트에서 객체를 조작하는 SQL 명령이다.</p>
+
+<p>데이터베이스 객체는 스키마라는 공간에 만들어지며, 스키마가 다르면 객체의 이름이 같아도 서로 다른 객체이다.</p>
+
+<h2 id="테이블-작성-삭제-변경">테이블 작성, 삭제, 변경</h2>
+
+<ul>
+  <li>DDL은 모두 같은 문법을 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">CREATE</code>로 작성, <code class="language-plaintext highlighter-rouge">DROP</code>으로 삭제, <code class="language-plaintext highlighter-rouge">ALTER</code>로 변경한다.</li>
+</ul>
+
+<h3 id="create-table">CREATE TABLE</h3>
+
+<p><code class="language-plaintext highlighter-rouge">CREATE</code> 문을 사용하여 테이블을 만들 수 있다.</p>
+
+<pre><code class="language-MySQL">CREATE TABLE 테이블명(
+    열 정의1,
+    열 정의2,
+    ...
+)
+</code></pre>
+
+<ul>
+  <li>열 이름을 명명 규칙에 맞게 붙여준다.
+    <ul>
+      <li>자료형은 INTEGER나 VARCHAR 등을 지정한다</li>
+      <li>CHAR나 VARCHAR와 같은 문자열형으로 지정할 때는 최대길이를 괄호로 묶어준다</li>
+    </ul>
+  </li>
+  <li>기본값을 설정할 때는 DEFAULT로 지정하되 자료형에 맞는 리터럴(literal)로 기술한다. 기본값은 생략 가능</li>
+  <li>열이 NULL을 허용할 것인지 지정한다. 생략하면 허용하는 것임</li>
+</ul>
+
+<h3 id="drop-table">DROP TABLE</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DROP</code> 문을 사용하여 테이블을 삭제할 수 있다.</p>
+
+<pre><code class="language-MySQL">&lt;테이블 삭제&gt;
+DROP TABLE 테이블명
+
+&lt;데이터 행 삭제&gt;
+TRUNCATE TABLE 테이블명
+</code></pre>
+
+<h3 id="alter-table">ALTER TABLE</h3>
+
+<p><code class="language-plaintext highlighter-rouge">ALTER</code> 문을 사용하여 테이블의 내용을 수정할 수 있다.</p>
+
+<pre><code class="language-MySQL">ALTER TABLE 테이블명 변경명령
+</code></pre>
+
+<h4 id="add">ADD</h4>
+
+<p><code class="language-plaintext highlighter-rouge">ALTER TABLE</code>문과 함께 <code class="language-plaintext highlighter-rouge">ADD</code> 문을 사용하면 테이블에 열을 추가할 수 있다</p>
+
+<pre><code class="language-MySQL">ALTER TABLE sample ADD 열 이름
+</code></pre>
+
+<h4 id="modify">MODIFY</h4>
+
+<p><code class="language-plaintext highlighter-rouge">ALTER TABLE</code>문과 함께 <code class="language-plaintext highlighter-rouge">MODIFY</code> 문을 사용하면 테이블의 열을 수정할 수 있다</p>
+
+<pre><code class="language-MySQL">ALTER TABLE sample MODIFY 열 이름
+</code></pre>
+
+<h4 id="drop">DROP</h4>
+
+<p><code class="language-plaintext highlighter-rouge">ALTER TABLE</code>문과 함께 <code class="language-plaintext highlighter-rouge">DROP</code> 문을 사용하면 테이블의 열을 삭제할 수 있다</p>
+
+<pre><code class="language-MySQL">ALTER TABLE sample DROP 열 이름
+</code></pre>
+
+<h2 id="제약-조건-constraint">제약 조건 Constraint</h2>
+
+<p>제약 조건이란 데이터의 무결성을 지키기 위해 데이터를 입력받을 때 실행되는 검사규칙을 말한다. 이러한 제약 조건은 <code class="language-plaintext highlighter-rouge">CREATE</code> 문으로 테이블을 생성할 때나 <code class="language-plaintext highlighter-rouge">ALTER</code> 문으로 데이터를 추가할 때도 설정할 수 있다.</p>
+
+<h3 id="not-null">NOT NULL</h3>
+
+<p>NULL 값을 사용하지 못하게 제약한다</p>
+
+<pre><code class="language-MySQL">CREATE TABLE sample (
+    a INTEGER NOT NULL,
+    b INTEGER NOT NULL,
+    c VARCHAR(30)
+)
+</code></pre>
+
+<ul>
+  <li>a,b 에는 NULL 값이 저장될 수 없다</li>
+  <li>c 에는 제약이 없다</li>
+</ul>
+
+<h3 id="unique">UNIQUE</h3>
+
+<p>CREATE 문으로 테이블을 생성할 때 해당 필드의 타입 뒤에 UNIQUE를 명시하면, 해당 필드에는 더는 중복된 값을 저장할 수 없다.</p>
+
+<pre><code class="language-MySQL">CREATE TABLE sample (
+    no INTEGER NOT NULL UNIQUE,
+    name INTEGER NOT NULL,
+    value VARCHAR(30)
+)
+</code></pre>
+
+<ul>
+  <li>no 열은 정수로 정의되며 NULL 값을 갖지 못하고 유일성을 만족한다</li>
+  <li>name 열은 정수로 정의되며 NULL 값을 갖지 못한다</li>
+  <li>value 열은 크기 30의 가변적 문자열이며 제약이 없다</li>
+</ul>
+
+<h3 id="primary-key">PRIMARY KEY</h3>
+
+<p>기본키 제약 조건을 설정하면, 해당 필드는 NOT NULL과 UNIQUE 제약 조건의 특징을 모두 가진다. 따라서 이 제약 조건이 설정된 필드는 NULL 값을 가질 수 없으며, 또한 중복된 값을 가져서도 안 된다. 이러한 기본키 제약 조건을 기본 키라고 한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">UNIQUE</code>는 한 테이블의 여러 필드에 설정할 수 있지만, 기본키는 테이블당 오직 하나의 필드에만 설정할 수 있다. 이러한 기본키 제약 조건은 테이블의 데이터를 쉽고 빠르게 찾도록 도와주는 역할을 한다.</p>
+
+<pre><code class="language-MySQL">CREATE TABLE Test 
+(
+    ID INT PRIMARY KEY,
+    Name VARCHAR(30),
+    ReserveDate DATE,
+    RoomNum INT
+);
+</code></pre>
+
+<h3 id="foreign-key">FOREIGN KEY</h3>
+
+<p>외래키 제약 조건을 설정한 필드는 외래 키라고 부르며, 한 테이블을 다른 테이블과 연결해주는 역할을 한다. 외래 키가 설정된 테이블에 레코드를 입력하면, 기준이 되는 테이블의 내용을 참조해서 레코드가 입력된다. 즉, 외래키 제약 조건은 하나의 테이블을 다른 테이블에 의존하게 만든다.</p>
+
+<p>외래키 제약조건은 데이터의 무결성을 유지하고 JOIN 성능을 높이는 좋은 방법이지만 외래 키 컬럼의 데이터 유형이 바뀌는 경우 변경 사항 적용이 어려워진다.</p>
+
+<p><strong>외래키 사용 시 주의사항</strong></p>
+
+<ul>
+  <li>외래키 값은 NULL이거나 부모 테이블의 기본키 값과 동일해야 한다(무결성 제약조건)</li>
+  <li>
+    <p>부모 테이블의 기본키, 고유키를 외래키로 지정할 수 있다.</p>
+  </li>
+  <li>
+    <p>외래키로 지정할 두 테이블의 필드는 같은 데이터 타입이어야 한다.</p>
+  </li>
+  <li>외래키 제약 조건을 설정할 때 참조되는 테이블의 필드는 반드시 <code class="language-plaintext highlighter-rouge">UNIQUE</code>나 <code class="language-plaintext highlighter-rouge">PRIMARY KEY</code> 제약 조건이 설정되어 있어야 한다.</li>
+</ul>
+
+<h4 id="create-문으로-foreign-key-설정">CREATE 문으로 FOREIGN KEY 설정</h4>
+
+<p>CREATE 문으로 테이블을 생성할 때 해당 필드의 타입 뒤에 FOREIGN KEY를 명시하면, 해당 필드가 외래 키로 설정된다.</p>
+
+<pre><code class="language-MySQL">CREATE TABLE 테이블이름(
+    필드이름 필드타입,
+    ...,
+    [CONSTRAINT 제약조건이름]
+    FOREIGN KEY (필드이름)
+    REFERENCES 테이블이름 (필드이름)
+)
+</code></pre>
+
+<ul>
+  <li>위의 문법을 사용하면 해당 필드에 외래키 제약 조건을 설정한다.</li>
+  <li>이때 참조되는 테이블의 이름은 <code class="language-plaintext highlighter-rouge">REFERENCES</code> 키워드 다음에 명시된다.</li>
+</ul>
+
+<h4 id="alter-문으로-foreign-key-설정">ALTER 문으로 FOREIGN KEY 설정</h4>
+
+<p>ALTER 문으로 테이블에 새로운 필드를 추가하거나 수정할 때도 FOREIGN KEY 제약 조건을 설정할 수 있다.</p>
+
+<pre><code class="language-MySQL">ALTER TABLE 테이블이름
+ADD [CONSTRAINT 제약조건이름]
+FOREIGN KEY (필드이름)
+REFERENCES 테이블이름 (필드이름)
+</code></pre>
+
+<h4 id="외래키-옵션-on-delete-on-update">외래키 옵션 On DELETE, ON UPDATE</h4>
+
+<ul>
+  <li>참조되는 테이블의 값이 삭제될 경우의 동작은 ON DELETE 구문으로 설정할 수 있다.</li>
+  <li>참조되는 테이블의 값이 수정될 경우의 동작은 ON UPDATE 구문으로 설정할 수 있다.</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>CASCADE</td>
+      <td>참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블에서도 삭제와 수정이 같이 이루어진다</td>
+    </tr>
+    <tr>
+      <td>SET NULL</td>
+      <td>참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블의 데이터는 NULL로 변경된다</td>
+    </tr>
+    <tr>
+      <td>NO ACTOPN</td>
+      <td>참조되는 테이블에서 데이터를 삭제하거나 수정해도, 참조하는 테이블의 데이터는 변경되지 않는다</td>
+    </tr>
+    <tr>
+      <td>SET DEFAULT</td>
+      <td>참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블의 데이터는 필드의 기본값으로 설정된다</td>
+    </tr>
+    <tr>
+      <td>RESTRICT</td>
+      <td>참조하는 테이블에 데이터가 남아 있으면, 참조되는 테이블의 데이터를 삭제하거나 수정할 수 없다</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="default">DEFAULT</h3>
+
+<p>값을 입력하지 않았을 때 자동으로 입력되는 기본값을 정의한다</p>
+
+<pre><code class="language-MySQL">CREATE TABLE 테이블명 (필드이름 필드타입 DEFAULT 기본값);
+
+ALTER TABLE 테이블명
+ADD 필드이름 필드타입 DEFAULT 기본값;
+</code></pre>
+
+<h2 id="index">INDEX</h2>
+
+<ul>
+  <li>테이블에서 원하는 데이터를 빠르게 찾기 위해 사용</li>
+  <li>일반적으로 데이터를 걸색할 때 순서대로 테이블 전체를 검색하므로 데이터가 많으면 많을수록 탐색하는 시간이 늘어남</li>
+  <li>검색과 질의를 할 때 테이블 전체를 읽지 않기 때문에 빠르다</li>
+  <li>설정된 열을 포함한 데이터의 삽입, 삭제, 수정 작업이 원본 테이블에서 이루어질 경우, 인덱스도 함께 수정되어야 함</li>
+  <li>인덱스가 있는 테이블은 처리 속도가 느려질 수 있으므로 수정보다는 검색이 자주 사용되는 테이블에서 사용하는 것이 좋음</li>
+</ul>
+
+<h3 id="create-index">CREATE INDEX</h3>
+
+<pre><code class="language-MySQL">CREATE INDEX 인덱스명 ON 테이블명 (열명1, 열명2, ...)
+</code></pre>
+
+<h3 id="drop-index">DROP INDEX</h3>
+
+<pre><code class="language-MySQL">&lt;스키마 객체의 경우&gt;
+DROP INDEX 인덱스명
+
+&lt;테이블 내 객체의 경우&gt;
+DROP INDEX 인덱스명 ON 테이블명
+</code></pre>
+
+<h3 id="alter-index">ALTER INDEX</h3>
+
+<pre><code class="language-MySQL">&lt;기본 인덱스 추가&gt;
+ALTER TABLE 테이블명
+ADD INDEX 인덱스명 (필드명)
+
+&lt;UNIQUE 인덱스 추가&gt;
+ALTER TABLE 테이블명
+ADD UNIQUE 인덱스명 (필드명)
+</code></pre>
+
+<h3 id="explain">EXPLAIN</h3>
+
+<p>인덱스 작성을 통해 쿼리의 성능 향상을 기대할 수 있다. 이때 실제로 인덱스를 사용해 검색하는지 확인하기 위해 <code class="language-plaintext highlighter-rouge">EXPLAIN</code> 명령을 사용한다.</p>
+
+<pre><code class="language-MySQL">EXPLAIN SQL 명령
+</code></pre>
+
+<h2 id="view">VIEW</h2>
+
+<ul>
+  <li>뷰(view)는 데이터베이스에 존재하는 일종의 가상 테이블이다</li>
+  <li>실제 테이블처럼 행과 열을 가지고 있지만 실제로 데이터를 저장하진 않는다</li>
+  <li>MySQL에서 뷰는 다른 테이블이나 다른 뷰에 저장되어 있는 데이터를 보여주는 역할만 수행한다</li>
+  <li>뷰를 사용하면 여러 테이블이나 뷰를 하나의 테이블처럼 볼 수 있다</li>
+</ul>
+
+<p><strong>뷰의 장점</strong></p>
+
+<ul>
+  <li>특정 사용자에게 테이블 전체가 아닌 필요한 열만 보여줄 수 있다</li>
+  <li>복잡한 쿼리를 단순화해서 사용 가능하다</li>
+  <li>쿼리를 재사용할 수 있다</li>
+</ul>
+
+<p><strong>뷰의 단점</strong></p>
+
+<ul>
+  <li>한 번 정의된 뷰는 변경할 수 없다</li>
+  <li>상입, 삭제, 갱신 작업에 많은 제한 사항을 가진다</li>
+  <li>자신만의 인덱스를 가질 수 없다</li>
+</ul>
+
+<h3 id="create-view">CREATE VIEW</h3>
+
+<p>CREATE 문을 사용하여 뷰를 생성할 수 있다.</p>
+
+<pre><code class="language-MySQL">CREAVE VIEW 뷰이름 AS
+SELECT 필드이름1, 필드이름2, ...
+FROM 테이블이름
+WHERE 조건
+</code></pre>
+
+<h4 id="or-replace">OR REPLACE</h4>
+
+<p>CREATE 문에 OR REPLACE 절을 추가하여 기존에 존재하는 뷰를 새로운 뷰로 대체할 수 있다.</p>
+
+<pre><code class="language-MySQL">CREATE OR REPLACE VIEW 뷰이름 AS
+SELECT 필드이름1, 필드이름2, ...
+FROM 테이블이름
+WHERE 조건
+</code></pre>
+
+<h3 id="alter-view">ALTER VIEW</h3>
+
+<p>CREATE 문을 사용하여 생성된 뷰는 ALTER 문을 사용하여 수정할 수 있다.</p>
+
+<pre><code class="language-MySQL">ALTER VIEW 뷰이름 AS
+SELECT 필드이름1, 필드이름2, ...
+FROM 테이블이름
+</code></pre>
+
+<h3 id="drop-view">DROP VIEW</h3>
+
+<p>DROP 문을 사용하여 생성된 뷰를 삭제할 수 있다.</p>
+
+<pre><code class="language-MySQL">DROP VIEW 뷰이름
+</code></pre>
+
+<h2 id="references">References</h2>
+<ul>
+  <li>아사이 아츠시, <em>SQL첫걸음</em>, 박준용 옮김, 한빛미디어, 2015.</li>
+  <li>이수안컴퓨터연구소, <a href="https://www.youtube.com/watch?v=vgIc4ctNFbc&amp;list=WL&amp;index=39&amp;t=370s">MySQL 데이터베이스 한번에 끝내기</a>, 2018.</li>
+  <li>TCP SCHOOL, <a href="http://tcpschool.com/mysql/intro">MySQL</a></li>
+</ul>
+:ET

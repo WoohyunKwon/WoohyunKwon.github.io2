@@ -1,0 +1,39 @@
+I"�<h2 id="문제">문제</h2>
+<p>알파벳 소문자로만 이루어진 단어 S가 주어진다. 각 알파벳이 단어에 몇 개가 포함되어 있는지 구하는 프로그램을 작성하시오.</p>
+
+<h2 id="입력">입력</h2>
+<p>첫째 줄에 단어 S가 주어진다. 단어의 길이는 100을 넘지 않으며, 알파벳 소문자로만 이루어져 있다.</p>
+
+<h2 id="출력">출력</h2>
+<p>단어에 포함되어 있는 a의 개수, b의 개수, …, z의 개수를 공백으로 구분해서 출력한다.</p>
+
+<h2 id="코드">코드</h2>
+
+<pre><code class="language-Python">import sys
+
+S = list(sys.stdin.readline())
+Enlist = list(i for i in range(97,123)) # ord('a') = 97, ord('z')=122
+result = []
+
+for i in Enlist: # S에 들어있는 알파벳이 몇개인지 확인해서 result에 input
+  result.append(S.count(chr(i)))
+
+print(*result)
+</code></pre>
+
+<ul>
+  <li>‘a-z’의 아스키코드를 <code class="language-plaintext highlighter-rouge">Enlist</code>에 담았다.</li>
+  <li><code class="language-plaintext highlighter-rouge">S</code>에 있는 알파벳의 개수를 <code class="language-plaintext highlighter-rouge">chr</code>함수를 통해 확인한 뒤 <code class="language-plaintext highlighter-rouge">result</code>에 넣었다.</li>
+</ul>
+
+<h2 id="예제-입력-1">예제 입력 1</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>baekjoon ## 예제 출력 1 
+1 1 0 0 1 0 0 0 0 1 1 0 0 1 2 0 0 0 0 0 0 0 0 0 0 0
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.acmicpc.net/problem/10808">백준 10808 알파벳 개수</a></li>
+</ul>
+:ET
