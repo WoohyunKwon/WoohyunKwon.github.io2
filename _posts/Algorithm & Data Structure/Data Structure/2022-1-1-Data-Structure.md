@@ -1,7 +1,7 @@
 --- 
 layout: post
 title:  "[Data Structure] 자료구조 정리"
-categories: Algorithm & Data Structure
+categories: Data Structure
 tags: [자료구조, Data Structure]
 ---
 
@@ -21,10 +21,10 @@ tags: [자료구조, Data Structure]
 
 - 배열 Array
 - 연결 리스트 Linked list
-- 스택 Stack
+- [스택 Stack](https://woohyunkwon.github.io/algorithm/&/data/structure/2022/01/01/Stack.html)
 - 큐 Queue
 
-### 2. 비선형(Non-linear) 구조
+### 비선형(Non-linear) 구조
 
 비선형 구조의 자료는 하나의 자료 뒤에 여러개의 자료가 존재할 수 있다.
 
