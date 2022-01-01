@@ -1,7 +1,7 @@
 --- 
 layout: post
-title:  "[Data Structure] 탐색적 데이터 분석 EDA"
-categories: Excel
+title:  "[Data Structure] 자료구조 정리"
+categories: Algorithm & Data Structure
 tags: [자료구조, Data Structure]
 ---
 
