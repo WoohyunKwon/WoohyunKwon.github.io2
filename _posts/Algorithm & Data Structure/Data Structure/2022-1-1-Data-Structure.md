@@ -1,7 +1,7 @@
 --- 
 layout: post
 title:  "[Data Structure] 자료구조 정리"
-categories: Data Structure
+categories: "Data Structure"
 tags: [자료구조, Data Structure]
 ---
 
