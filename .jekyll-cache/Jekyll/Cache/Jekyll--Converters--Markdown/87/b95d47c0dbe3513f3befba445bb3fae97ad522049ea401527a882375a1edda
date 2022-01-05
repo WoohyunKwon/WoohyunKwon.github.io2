@@ -1,0 +1,111 @@
+I"e
+<h2 id="문제">문제</h2>
+<p>N!에서 뒤에서부터 처음 0이 아닌 숫자가 나올 때까지 0의 개수를 구하는 프로그램을 작성하시오.</p>
+
+<h2 id="입력">입력</h2>
+<p>첫째 줄에 N이 주어진다. (0 ≤ N ≤ 500)</p>
+
+<h2 id="출력">출력</h2>
+<p>첫째 줄에 구한 0의 개수를 출력한다.</p>
+
+<h2 id="예제-입력-1">예제 입력 1</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10 ## 예제 출력 1 
+2
+</code></pre></div></div>
+
+<h2 id="코드1">코드1</h2>
+
+<pre><code class="language-Python">import sys
+
+N = int(sys.stdin.readline())
+factorial = 1
+
+for i in range(1,N+1):
+  factorial = factorial * i
+
+count = 0
+factorial = list(str(factorial))
+
+for j in range(len(factorial)):
+  if int(factorial[-1]) != 0:
+    print(count)
+    break
+  else:
+    factorial.pop()
+    count += 1
+</code></pre>
+
+<p>첫 시도로 입력된 수(N)에 대해 팩토리얼(factorial)을 구하고 팩토리얼을 리스트로 바꿔 pop()을 통해 팩토리얼의 값을 역순으로 확인하여 0이 아닌 수가 언제 처음나오는지 구하였다. 일단 정답은 맞았으나 더욱 간단한 방법이 있었다.</p>
+
+<h2 id="코드2">코드2</h2>
+
+<pre><code class="language-Python">import sys
+N = int(sys.stdin.readline())
+print(N//5 + N//25 + N//125)
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">10 = 2 x 5</code> 이므로 2(짝수)의 개수가 더 많으므로 0의 개수는 5의 개수에 의해 정해진다. 5의 개수를 정리하면 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>n 팩토리얼</th>
+      <th>5의 개수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5!</td>
+      <td>1개</td>
+    </tr>
+    <tr>
+      <td>10!</td>
+      <td>2개</td>
+    </tr>
+    <tr>
+      <td>15!</td>
+      <td>3개</td>
+    </tr>
+    <tr>
+      <td>20!</td>
+      <td>4개</td>
+    </tr>
+    <tr>
+      <td>25!</td>
+      <td>6개</td>
+    </tr>
+    <tr>
+      <td>30!</td>
+      <td>7개</td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+    <tr>
+      <td>120!</td>
+      <td>28개</td>
+    </tr>
+    <tr>
+      <td>125!</td>
+      <td>31개</td>
+    </tr>
+    <tr>
+      <td>130!</td>
+      <td>32개</td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>따라서 N!의 0의 개수(=5의 개수)는 <code class="language-plaintext highlighter-rouge">N//5 + N//25 + N//125</code>가 된다.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.acmicpc.net/problem/1676">백준 1676 팩토리얼 0의 개수</a></li>
+</ul>
+:ET

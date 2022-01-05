@@ -1,0 +1,101 @@
+I"=<h1 id="배열array이란">배열(Array)이란?</h1>
+
+<p>| 0 | 1 | 2 | … | n-2 | n-1 |
+|—|—|—|—–|—–|—–|</p>
+
+<p>$\Uparrow$ 배열의 크기를 줄인다</p>
+
+<p>| 0 | 1 | 2 | … | n-2 | n-1 | n |
+|—|—|—|—–|—–|—–|—|</p>
+
+<p>$\Downarrow$ 배열의 크기를 늘린다</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">0</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">…</th>
+      <th style="text-align: center">n-2</th>
+      <th style="text-align: center">n-1</th>
+      <th style="text-align: center">n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">^^</td>
+      <td style="text-align: center">^^</td>
+      <td style="text-align: center">^^</td>
+      <td style="text-align: center">^^</td>
+      <td style="text-align: center">^^</td>
+      <td style="text-align: center">^^</td>
+      <td style="text-align: center">^^</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$$
+\begin{array}{l|l|c|r|}
+n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} <br />
+\hline
+1 &amp; 0.24 &amp; 1 &amp; 125 &amp; … &amp;  <br />
+2 &amp; -1 &amp; 189 &amp; -8 <br />
+3 &amp; -20 &amp; 2000 &amp; 1+10i
+\end{array}
+$$</p>
+
+<p>$$
+% outer vertical array of arrays
+\begin{array}{c}
+% inner horizontal array of arrays
+\begin{array}{cc}
+% inner array of minimum values
+\begin{array}{c|cccc}
+\text{min} &amp; 0 &amp; 1 &amp; 2 &amp; 3<br />
+\hline
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0<br />
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 1<br />
+2 &amp; 0 &amp; 1 &amp; 2 &amp; 2<br />
+3 &amp; 0 &amp; 1 &amp; 2 &amp; 3
+\end{array}
+&amp;
+% inner array of maximum values
+\begin{array}{c|cccc}
+\text{max}&amp;0&amp;1&amp;2&amp;3<br />
+\hline
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 3<br />
+1 &amp; 1 &amp; 1 &amp; 2 &amp; 3<br />
+2 &amp; 2 &amp; 2 &amp; 2 &amp; 3<br />
+3 &amp; 3 &amp; 3 &amp; 3 &amp; 3
+\end{array}
+\end{array}
+<br />
+% inner array of delta values
+\begin{array}{c|cccc}
+\Delta&amp;0&amp;1&amp;2&amp;3<br />
+\hline
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 3<br />
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 2<br />
+2 &amp; 2 &amp; 1 &amp; 0 &amp; 1<br />
+3 &amp; 3 &amp; 2 &amp; 1 &amp; 0
+\end{array}
+\end{array}
+$$</p>
+
+<p>$$
+\begin{pmatrix}
+ 1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n <br />
+ 1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n <br />
+ \vdots  &amp; \vdots&amp; \vdots &amp; \ddots &amp; \vdots <br />
+ 1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n  <br />
+ \end{pmatrix}
+$$</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="http://www.tcpschool.com/c/c_array_oneDimensional">TCPSCHOOL, 배열</a></li>
+  <li><a href="https://www.youtube.com/watch?v=NFETSCJON2M&amp;list=PL7jH19IHhOLMdHvl3KBfFI70r9P0lkJwL&amp;index=2">노마드코더 Youtube, Array 배열 기초개념? 10분안에 정리해줌!</a></li>
+</ul>
+:ET

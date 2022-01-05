@@ -1,0 +1,22 @@
+I"�<h1 id="배열array이란">배열(Array)이란?</h1>
+
+<p>| 0 | 1 | 2 | … | n-2 | n-1 |
+|—|—|—|—–|—–|—–|</p>
+
+<p>$\Uparrow$ 배열의 크기를 줄인다</p>
+
+<p>| 0 | 1 | 2 | … | n-2 | n-1 | n |
+|—|—|—|—–|—–|—–|—|</p>
+
+<p>$\Downarrow$ 배열의 크기를 늘린다</p>
+
+<p>| 0 | 1 | 2 | … | n-2 | n-1 | n |
+|:-:|:-:|:-:|:—:|:—:|:—:|:-:|</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="http://www.tcpschool.com/c/c_array_oneDimensional">TCPSCHOOL, 배열</a></li>
+  <li><a href="https://www.youtube.com/watch?v=NFETSCJON2M&amp;list=PL7jH19IHhOLMdHvl3KBfFI70r9P0lkJwL&amp;index=2">노마드코더 Youtube, Array 배열 기초개념? 10분안에 정리해줌!</a></li>
+</ul>
+:ET

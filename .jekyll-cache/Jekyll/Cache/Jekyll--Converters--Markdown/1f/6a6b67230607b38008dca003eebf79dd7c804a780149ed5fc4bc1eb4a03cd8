@@ -1,0 +1,81 @@
+I"�<h1 id="배열array이란">배열(Array)이란?</h1>
+
+<pre><code class="language-plantuml">&lt;img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a41202d3e20423a20ebb0b0ec97b4ec9d9820ed81aceab8b0eba5bc20eb8a98eba6b0eb8ba40a40656e64756d6c"&gt;
+</code></pre>
+
+<table>
+<thead>
+  <tr>
+    <th>[0]</th>
+    <th>[1]</th>
+    <th>[2]</th>
+    <th>...</th>
+    <th>[n-1]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>5</td>
+    <td>1</td>
+    <td>9</td>
+    <td>...</td>
+    <td>98</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+  <tr>
+    <th>[0]</th>
+    <th>[1]</th>
+    <th>[2]</th>
+    <th>...</th>
+    <th>[n-1]</th>
+    <th>[n]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>5</td>
+    <td>1</td>
+    <td>9</td>
+    <td>...</td>
+    <td>98</td>
+    <td>4</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+  <tr>
+    <th>[0]</th>
+    <th>[1]</th>
+    <th>[2]</th>
+    <th>...</th>
+    <th>[n-1]</th>
+    <th>[n]</th>
+    <th>[n+1]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>5</td>
+    <td>1</td>
+    <td>9</td>
+    <td>...</td>
+    <td>98</td>
+    <td>4</td>
+    <td>15</td>
+  </tr>
+</tbody>
+</table>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="http://www.tcpschool.com/c/c_array_oneDimensional">TCPSCHOOL, 배열</a></li>
+  <li><a href="https://www.youtube.com/watch?v=NFETSCJON2M&amp;list=PL7jH19IHhOLMdHvl3KBfFI70r9P0lkJwL&amp;index=2">노마드코더 Youtube, Array 배열 기초개념? 10분안에 정리해줌!</a></li>
+</ul>
+:ET
