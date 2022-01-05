@@ -19,9 +19,9 @@ tags: [자료구조, Data Structure]
 
 선형 자료구조란 하나의 자료 뒤에 하나의 자료가 존재하는 것이다.
 
-- 배열 Array
+- [배열 Array](https://woohyunkwon.github.io/data/structure/2022/01/04/Array.html)
 - 연결 리스트 Linked list
-- [스택 Stack](https://woohyunkwon.github.io/algorithm/&/data/structure/2022/01/01/Stack.html)
+- [스택 Stack](https://woohyunkwon.github.io/data/structure/2022/01/01/Stack.html)
 - 큐 Queue
 
 ### 비선형(Non-linear) 구조
