@@ -1,0 +1,77 @@
+I"<h2 id="문제">문제</h2>
+<p>수빈이는 동생 N명과 숨바꼭질을 하고 있다. 수빈이는 현재 점 S에 있고, 동생은 $A_1, A_2, …, A_N$에 있다.</p>
+
+<p>수빈이는 걸어서 이동을 할 수 있다. 수빈이의 위치가 X일때 걷는다면 1초 후에 X+D나 X-D로 이동할 수 있다. 수빈이의 위치가 동생이 있는 위치와 같으면, 동생을 찾았다고 한다.</p>
+
+<p>모든 동생을 찾기위해 D의 값을 정하려고 한다. 가능한 D의 최댓값을 구해보자.</p>
+
+<h2 id="입력">입력</h2>
+<p>첫째 줄에 N(1 ≤ N ≤ 105)과 S(1 ≤ S ≤ 109)가 주어진다. 둘째 줄에 동생의 위치 Ai(1 ≤ Ai ≤ 109)가 주어진다. 동생의 위치는 모두 다르며, 수빈이의 위치와 같지 않다.</p>
+
+<h2 id="출력">출력</h2>
+<p>가능한 D값의 최댓값을 출력한다.</p>
+
+<h2 id="예제-입력-1">예제 입력 1</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 3
+1 7 11 ## 예제 출력 1 
+2 ## 예제 입력 2 
+3 81
+33 105 57 ## 예제 출력 2 
+24
+</code></pre></div></div>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span> <span class="c1"># 최대공약수를 유클리드 호제법으로 구함
+</span>  <span class="k">while</span> <span class="n">y</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">%</span> <span class="n">y</span>
+  <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">N</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+<span class="n">bro</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span> <span class="c1"># 동생들 위치
+</span><span class="n">dist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">bro</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">S</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span> <span class="c1"># 동생들과 수빈이와의 거리
+</span><span class="n">D</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="c1"># 동생들과 수빈이와의 거리의 최솟값 
+</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">)):</span>
+  <span class="n">D</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">D</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>마지막에 최대공약수<code class="language-plaintext highlighter-rouge">D = gcd(dist[i], D)</code>를 구하는 부분만 살펴보자. 수빈이는 <code class="language-plaintext highlighter-rouge">X+D</code> 또는 <code class="language-plaintext highlighter-rouge">X-D</code>로 이동할 수 있기 때문에 단순히 수빈이와 동생들과의 거리의 최솟값 만큼만 이동하면 모든 동생과 만날 수 없다. 예를들어, 동생들과 수빈이의 위치가 다음과 같다고 하자.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">동생1</th>
+      <th style="text-align: center">동생2</th>
+      <th style="text-align: center">수빈</th>
+      <th style="text-align: center">동생3</th>
+      <th style="text-align: center">…</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">위치</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>그러면 동생과 수빈이의 거리의 최솟값은 2(수빈-동생2)이지만 수빈이의 위치(6)에서 2만큼 이동해도 동생3(9)과 만날 수 없다. 그래서 수빈이와 동생들과의 거리의 최솟값과 동생들과의 거리의 최대공약수<code class="language-plaintext highlighter-rouge">D = gcd(dist[i], D)</code>가 수빈이가 이동할 수 있는 거리의 최대값 <code class="language-plaintext highlighter-rouge">D</code>가 된다.</p>
+
+<h2 id="참고">참고</h2>
+
+<p><a href="">유클리드 호제법</a></p>
+
+<h2 id="출처">출처</h2>
+
+<p><a href="https://www.acmicpc.net/problem/17087">백준 17087 숨바꼭질 6</a></p>
+:ET

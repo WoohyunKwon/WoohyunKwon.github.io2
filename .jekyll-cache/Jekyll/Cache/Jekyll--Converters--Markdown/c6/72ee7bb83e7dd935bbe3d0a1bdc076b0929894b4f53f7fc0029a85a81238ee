@@ -1,0 +1,76 @@
+I"�<h2 id="유클리드-호제법-euclidean-algorithm">유클리드 호제법 Euclidean Algorithm</h2>
+
+<p>유클리드 호제법(Euclidean algorithm) 또는 유클리드 알고리즘은 2개의 양의 정수 또는 두 다항식의 최대공약수를 구하는 알고리즘의 하나이다. 정수에 대한 유클리드 호제법은 다음의 정리에 기인한다.</p>
+
+<p>$\forall a, b, r \in \mathbb{Z}$, $a$를 $b$로 나눈 나머지를 $r$라 하자(단, $0 \le r&lt;b\le a$). $gcd(a,b)$가 두 정수 $a$, $b$의 최대공약수(greatest common divisor)라 하면 다음식이 성립한다.</p>
+
+<p>$$gcd(a,b) = gcd(b,r). $$</p>
+
+<h2 id="증명">증명</h2>
+
+<p>$\forall a, b\in \mathbb{Z}$일 때, $a \ge b$라 하자. 그러면 $a=bq+r$를 만족하는 유일한 정수 $q,r$($0 \le r &lt; b$)이 존재한다. $gcd(a,b)=G$를 만족하는 $G$가 존재한다면,</p>
+
+<p>$$a=Gu,\ b=Gv$$</p>
+
+<p>를 만족하는 서로 다른 두 정수 $u,v$가 존재하며 $u$와 $v$는 서로소이다.</p>
+
+<p>$$
+\begin{matrix}
+a   &amp;=&amp; bq+r <br />
+Gu  &amp;=&amp; Gvq + r <br />
+r   &amp;=&amp; G(u-vq)
+\end{matrix}
+$$</p>
+
+<p>따라서 $r$은 $G$의 배수이다.</p>
+
+<p>이제 $r=Gt\ (t \in \mathbb{Z})$라 하자. $gcd(v,t)=G’&gt;1$, $v=G’v’$, $t=G’t’$를 만족하는 $G’, v’, t’$이 존재한다 가정하자. 그러면,</p>
+
+<p>$$
+\begin{matrix}
+a   &amp;=&amp; bq+r <br />
+Gu  &amp;=&amp; Gvq + Gt <br />
+    &amp;=&amp; GG’v’q + GG’t’ <br />
+    &amp;=&amp; GG’(v’q+t’) <br />
+u   &amp;=&amp; G’(v’q+t’)
+\end{matrix}
+$$</p>
+
+<p>이므로 $u$는 $G’$의 배수이므로 $u$와 $v$는 서로소라는 사실에 모순이 된다. 따라서 $(b,r)=G$이고,</p>
+
+<p>$$gcd(a,b) = gcd(b,r)$$</p>
+
+<p>를 만족한다.</p>
+
+<h2 id="활용">활용</h2>
+
+<h3 id="최대공약수">최대공약수</h3>
+
+<p>이 알고리즘은 두 정수의 최대공약수를 구할 때 쓸 수 있다. 파이썬에서는 반복문과 재귀문을 사용하여 이를 활용할 수 있다.</p>
+
+<p><strong>반복문</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="c1"># a = bq + r
+</span>    <span class="k">while</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="k">return</span> <span class="n">a</span>
+</code></pre></div></div>
+
+<p><strong>재귀문</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+  <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+  <span class="k">return</span> <span class="n">a</span>
+</code></pre></div></div>
+
+<h2 id="출처">출처</h2>
+
+<ul>
+  <li><a href="https://mathworld.wolfram.com/EuclideanAlgorithm.html">Wolfram, Euclidean Algorithm</a></li>
+  <li><a href="https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C_%ED%98%B8%EC%A0%9C%EB%B2%95">위키백과, 유클리드 호제법</a></li>
+  <li><a href="https://namu.wiki/w/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C%20%ED%98%B8%EC%A0%9C%EB%B2%95">나무위키, 유클리드 호제법</a></li>
+</ul>
+:ET
