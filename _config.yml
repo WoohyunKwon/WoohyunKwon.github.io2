@@ -168,6 +168,12 @@ markdown: kramdown
 kmarkdown:
   input: GFM
 
+# Math equation
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

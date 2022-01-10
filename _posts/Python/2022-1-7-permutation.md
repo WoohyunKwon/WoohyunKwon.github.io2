@@ -4,6 +4,7 @@ title: "[Python] 파이썬 순열, 조합, 중복순열, 중복조합 구현하�
 author: Woohyun Kwon
 categories: Python
 tags: [Python, 파이썬, 순열, 조합, 중복순열, 중복조합, permutation, combination]
+use_math: true
 ---
 
 ## 조합(combination)
