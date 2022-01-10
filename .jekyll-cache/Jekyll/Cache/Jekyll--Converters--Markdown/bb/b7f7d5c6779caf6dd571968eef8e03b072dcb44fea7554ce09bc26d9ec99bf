@@ -1,0 +1,186 @@
+I"�-<h2 id="where-vs-having">WHERE vs HAVING</h2>
+
+<p><code class="language-plaintext highlighter-rouge">MySQL</code>내에서 함수들의 내부처리 순서는 <code class="language-plaintext highlighter-rouge">WHERE - GROUP BY - HAVING - SELECT - ORDER BY</code>이다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">WHERE</code> 구로 행을 검색하는 처리가 <code class="language-plaintext highlighter-rouge">GROUP BY</code>로 그룹화하는 처리보다 순서상 앞서기 때문에 <code class="language-plaintext highlighter-rouge">GROUP BY</code>로 그룹화한 값을 사용할 수 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">HAVING</code> 구는 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 뒤에 위치하여 <code class="language-plaintext highlighter-rouge">WHERE</code> 구와 동일하게 조건식을 지정할 수 있으며 <code class="language-plaintext highlighter-rouge">GROUP BY</code>보다 나중에 처리하므로 <code class="language-plaintext highlighter-rouge">GROUP BY</code>로 그룹화한 값을 사용할 수 있다.</li>
+</ul>
+
+<p>프로그래머스에서 가져온 <a href="https://programmers.co.kr/learn/courses/30/lessons/59412">입양 시각 구하기(1)</a> 문제를 통해 차이를 확인해보자.</p>
+
+<h2 id="문제-설명">문제 설명</h2>
+
+<p>ANIMAL_OUTS 테이블은 동물 보호소에서 입양 보낸 동물의 정보를 담은 테이블입니다. ANIMAL_OUTS 테이블 구조는 다음과 같으며, ANIMAL_ID, ANIMAL_TYPE, DATETIME, NAME, SEX_UPON_OUTCOME는 각각 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부를 나타냅니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">NAME</th>
+      <th style="text-align: center">TYPE</th>
+      <th style="text-align: center">NULLABLE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">ANIMAL_ID</td>
+      <td style="text-align: center">VARCHAR(N)</td>
+      <td style="text-align: center">FALSE</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ANIMAL_TYPE</td>
+      <td style="text-align: center">VARCHAR(N)</td>
+      <td style="text-align: center">FALSE</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">DATETIME</td>
+      <td style="text-align: center">DATETIME</td>
+      <td style="text-align: center">FALSE</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">NAME</td>
+      <td style="text-align: center">VARCHAR(N)</td>
+      <td style="text-align: center">TRUE</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">SEX_UPON_OUTCOME</td>
+      <td style="text-align: center">VARCHAR(N)</td>
+      <td style="text-align: center">FALSE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>보호소에서는 몇 시에 입양이 가장 활발하게 일어나는지 알아보려 합니다. 09:00부터 19:59까지, 각 시간대별로 입양이 몇 건이나 발생했는지 조회하는 SQL문을 작성해주세요. 이때 결과는 시간대 순으로 정렬해야 합니다.</p>
+
+<h2 id="결과">결과</h2>
+
+<p>SQL문을 실행하면 다음과 같이 나와야 합니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">HOUR</th>
+      <th style="text-align: center">COUNT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">13</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">10</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">14</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center">10</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">17</td>
+      <td style="text-align: center">12</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">16</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">19</td>
+      <td style="text-align: center">2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드-1-having">코드 1: HAVING</h2>
+
+<pre><code class="language-mysql">SELECT 
+    HOUR(DATETIME) AS HOUR, 
+    COUNT(HOUR(DATETIME)) AS COUNT
+FROM ANIMAL_OUTS
+GROUP BY HOUR(DATETIME) # DATETIME 열의 값들을 시간별로 묶는다
+HAVING HOUR &gt; 8 AND HOUR &lt; 20 # 9시부터 19시까지만 출력
+ORDER BY HOUR(DATETIME) # 시간순으로 정렬
+</code></pre>
+
+<p><span style="color: #2D3748; background-color:#fff5b1;">
+처리 순서: FROM - GROUP BY - HAVING - SELECT - ORDER BY
+</span></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FROM</code>을 통해 <code class="language-plaintext highlighter-rouge">ANIMAL_OUTS</code> 데이터를 불러온다.</li>
+  <li><code class="language-plaintext highlighter-rouge">GROUP BY</code>를 통해 시간만 추출한 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 열의 값들을 시간별로 묶는다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">DATETIME</code> 열의 데이터 형태는 <strong>DATETIME</strong>이며, <strong>DATETIME</strong> 형태의 데이터에서 시간만 추출하기위해 <code class="language-plaintext highlighter-rouge">HOUR</code>를 사용한다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">HAVING</code>을 통해 <code class="language-plaintext highlighter-rouge">GROUP BY</code>로 그룹화한 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code>의 데이터 중 9시부터 19시까지의 시간대만 표시한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">SELECT</code>로 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code>, <code class="language-plaintext highlighter-rouge">COUNT(HOUR(DATETIME))</code> 열만 선택한다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">COUNT</code>로 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code>에 따른 값의 수를 계산한다.</li>
+      <li><code class="language-plaintext highlighter-rouge">AS</code>로 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 열의 이름을 <code class="language-plaintext highlighter-rouge">HOUR</code>로 하며, <code class="language-plaintext highlighter-rouge">COUNT(HOUR(DATETIME))</code>열의 이름은 <code class="language-plaintext highlighter-rouge">COUNT</code>로 한다.</li>
+      <li><span style="color: #2D3748; background-color:#fff5b1;">참고</span> <code class="language-plaintext highlighter-rouge">HAVING HOUR(DATETIME) &gt; 8 AND HOUR(DATETIME) &lt; 20</code>을 사용하면 에러가 발생한다. 이유는 앞서 처리된 <code class="language-plaintext highlighter-rouge">SELECT</code> 구에서 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME) AS HOUR</code>을 통해 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 열의 이름을 <code class="language-plaintext highlighter-rouge">HOUR</code>로 바꿨기 때문에 <code class="language-plaintext highlighter-rouge">HAVING</code>이 참조할 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 열이 존재하지 않기 때문이다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ORDER BY</code>로 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 데이터를 시간순으로 정렬한다. 기본값은 오름차순이며 <code class="language-plaintext highlighter-rouge">DESC</code>를 붙이면 내림차순이 된다.</li>
+</ul>
+
+<h2 id="코드-2-where">코드 2 WHERE</h2>
+
+<p>이번 문제의 경우 <code class="language-plaintext highlighter-rouge">WHERE</code>을 사용하면 다음과 같다.</p>
+
+<pre><code class="language-mysql">SELECT 
+    HOUR(DATETIME) AS HOUR, 
+    COUNT(HOUR(DATETIME)) AS COUNT
+FROM ANIMAL_OUTS
+WHERE HOUR(DATETIME) &gt; 8 AND HOUR(DATETIME) &lt; 20
+GROUP BY HOUR(DATETIME) # DATETIME 열의 값들을 시간별로 묶는다
+ORDER BY HOUR(DATETIME) # 시간순으로 정렬
+</code></pre>
+
+<p><span style="color: #2D3748; background-color:#fff5b1;">
+처리 순서: FROM - WHERE - GROUP BY - SELECT - ORDER BY
+</span></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FROM</code>을 통해 <code class="language-plaintext highlighter-rouge">ANIMAL_OUTS</code> 데이터를 불러온다.</li>
+  <li><code class="language-plaintext highlighter-rouge">WHERE</code>을 통해 시간만 추출한 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 데이터 중 9시부터 19시까지의 시간대만 표시한다.
+    <ul>
+      <li><span style="color: #2D3748; background-color:#fff5b1;">참고</span> <code class="language-plaintext highlighter-rouge">WHERE HOUR &gt; 8 AND HOUR &lt; 20</code>을 사용하면 에러가 발생한다. 이유는 <code class="language-plaintext highlighter-rouge">WHERE</code>구가 <code class="language-plaintext highlighter-rouge">SELECT</code>보다 처리 순서가 빨라서 <code class="language-plaintext highlighter-rouge">SELECT</code>구의 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME) AS HOUR</code>이 실행되기 전이기 때문에 <code class="language-plaintext highlighter-rouge">HOUR</code>가 없기 때문이다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">GROUP BY</code>를 통해 <code class="language-plaintext highlighter-rouge">WHERE</code>로 제한된(9~19시) 시간만 추출한 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 열의 값들을 시간별로 묶는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">SELECT</code>로 전체 데이터 중 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code>, <code class="language-plaintext highlighter-rouge">COUNT(HOUR(DATETIME))</code> 열만 선택한다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">COUNT</code>로 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code>에 따른 값의 수를 계산한다.</li>
+      <li><code class="language-plaintext highlighter-rouge">AS</code>로 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 열의 이름을 <code class="language-plaintext highlighter-rouge">HOUR</code>로 하며, <code class="language-plaintext highlighter-rouge">COUNT(HOUR(DATETIME))</code>열의 이름은 <code class="language-plaintext highlighter-rouge">COUNT</code>로 한다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ORDER BY</code>로 <code class="language-plaintext highlighter-rouge">HOUR(DATETIME)</code> 데이터를 시간순으로 정렬한다. 기본값은 오름차순이며 <code class="language-plaintext highlighter-rouge">DESC</code>를 붙이면 내림차순이 된다.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://programmers.co.kr/learn/courses/30/lessons/59412">프로그래머스, 입양 시각 구하기 1</a></li>
+  <li><a href="https://woohyunkwon.github.io/sql/2021/12/27/MySQL-FS.html#h-%EC%A0%95%EB%A0%AC">MySQL 기초 정리</a></li>
+</ul>
+:ET

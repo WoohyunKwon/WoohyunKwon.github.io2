@@ -1,0 +1,2 @@
+I"�<p>어떤 집단에 대한 정보를 알고 싶다고 가정하자. 이때 정보를 얻고자 하는 대상이 되는 개체의 집합을 <code class="language-plaintext highlighter-rouge">모집단(population)</code>이라 한다. 모집단의 평균(mean), 편차(derivation) 등 모집단을 조사하여 얻을수 있는 통계적인 특성치를 <code class="language-plaintext highlighter-rouge">모수(parameter)</code>라고 한다. 현실적으로 모든 집단을 조사하기는 불가능한 경우가 많으므로 모집단의 일부분을 추출단위에 따라 소수 집합으로 구분하여 조사를 하며, 이 모집단메서 분석 대상으로 관찰된 일부의 집합을 <code class="language-plaintext highlighter-rouge">표본(sample)</code>이라고 한다. 추출한 표본의 통계적인 특성치를 <code class="language-plaintext highlighter-rouge">통계량(statistic)</code>이라 한다.</p>
+:ET

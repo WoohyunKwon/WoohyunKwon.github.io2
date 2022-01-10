@@ -1,0 +1,99 @@
+I"�,<h2 id="조합combination">조합(combination)</h2>
+
+<p><code class="language-plaintext highlighter-rouge">조합(combination)</code>이란 서로 다른 $n$개의 원소에서 $k$개의 원소를 순서에 상관없이 선택하는 방법의 가짓수를 말하며, 그 값은 다음과 같다:</p>
+
+<p>$$nCk = {n \choose k} = {n! \over k!(n-k)!}$$</p>
+
+<h3 id="파이썬-조합-구현-itertoolscombinatios">파이썬 조합 구현: <code class="language-plaintext highlighter-rouge">itertools.combinatios</code></h3>
+
+<p><code class="language-plaintext highlighter-rouge">itertools</code> 라이브러리의 <code class="language-plaintext highlighter-rouge">combinations</code>을 사용하면 조합을 구할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">기본형</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="s">'뽑을 리스트'</span><span class="p">,</span> <span class="s">'뽑을개수'</span><span class="p">)))</span>
+
+<span class="o">&lt;</span><span class="n">예제</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="o">&lt;</span><span class="n">결과</span><span class="o">&gt;</span>
+<span class="p">[(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">),</span> <span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="순열permutation">순열(permutation)</h2>
+
+<p><code class="language-plaintext highlighter-rouge">순열(permutation)</code>이란 $n$개의 원소에서 $k$개의 원소를 골라 배열하는 방법의 가짓수을 말하며, 그 값은 다음과 같다:</p>
+
+<p>$$nPk=P(n,k)=n(n-1)…(n-k+1)$$</p>
+
+<h3 id="파이썬-순열-구현-itertoolspermutaions">파이썬 순열 구현: <code class="language-plaintext highlighter-rouge">itertools.permutaions</code></h3>
+
+<p><code class="language-plaintext highlighter-rouge">itertools</code> 라이브러리의 <code class="language-plaintext highlighter-rouge">permutations</code>을 사용하면 순열을 구할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">기본형</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">permutations</span><span class="p">(</span><span class="s">'뽑을 리스트'</span><span class="p">,</span> <span class="s">'뽑을개수'</span><span class="p">)))</span>
+
+<span class="o">&lt;</span><span class="n">예제</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">permutations</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="o">&lt;</span><span class="n">결과</span><span class="o">&gt;</span>
+<span class="p">[(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">),</span> <span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">),</span> <span class="p">(</span><span class="s">'C'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">),</span> <span class="p">(</span><span class="s">'C'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="중복조합combinations-with-replacement">중복조합(combinations with replacement)</h2>
+
+<p>중복조합(combinations with replacement)은 서로 다른 $n$개의 원소에서 중복을 허락하여 $k$개를 뽑는 경우를 말하며, 기호로는 다음과 같이 쓴다:</p>
+
+<p>$$nHk=_{k+(n-1)}C_k={k+(n-1) \choose k}$$</p>
+
+<h3 id="파이썬-중복조합-구현-itertoolscombinations_with_replacement">파이썬 중복조합 구현: <code class="language-plaintext highlighter-rouge">itertools.combinations_with_replacement</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">기본형</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations_with_replacement</span><span class="p">(</span><span class="s">'뽑을 리스트'</span><span class="p">,</span> <span class="s">'뽑을개수'</span><span class="p">)))</span>
+
+<span class="o">&lt;</span><span class="n">예제</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations_with_replacement</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="o">&lt;</span><span class="n">결과</span><span class="o">&gt;</span>
+<span class="p">[(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">),</span> <span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">),</span> <span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">),</span> <span class="p">(</span><span class="s">'C'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="중복순열permutation-with-repetition">중복순열(permutation with repetition)</h2>
+
+<p>중복순열(permutation with repetition)은 $n$개의 원소 중에 중복이 가능하게 $k$개를 골라서 순서 있게 나열한 것을 말하며, $n^k$개의 가짓수가 있다.</p>
+
+<h3 id="파이썬-중복순열-구현-itertoolsproduct">파이썬 중복순열 구현: <code class="language-plaintext highlighter-rouge">itertools.product</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">기본형</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="s">'뽑을 리스트'</span><span class="p">,</span> <span class="s">'뽑을 리스트'</span><span class="p">,</span> <span class="p">...)))</span>
+
+<span class="o">&lt;</span><span class="n">예제</span><span class="o">&gt;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="p">[</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">])))</span>
+
+<span class="o">&lt;</span><span class="n">결과</span><span class="o">&gt;</span>
+<span class="p">[(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">),</span> <span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">),</span> <span class="p">(</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">),</span> <span class="p">(</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">),</span> <span class="p">(</span><span class="s">'C'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">),</span> <span class="p">(</span><span class="s">'C'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">),</span> <span class="p">(</span><span class="s">'C'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://ko.wikipedia.org/wiki/%EC%88%9C%EC%97%B4#%EC%A4%91%EB%B3%B5_%EC%88%9C%EC%97%B4">위키백과, 순열</a></li>
+  <li><a href="https://ko.wikipedia.org/wiki/%EC%A1%B0%ED%95%A9">위키백과, 조합</a></li>
+  <li><a href="https://juhee-maeng.tistory.com/91">maengjh, (Python) 순열, 조합, 중복순열, 중복조합 쉽게 구현하기</a></li>
+  <li><a href="https://ourcstory.tistory.com/414">쌍쌍바나나, 파이썬 (Python)에서 리스트에 있는 값들의 모든 조합을 구하기</a></li>
+</ul>
+:ET

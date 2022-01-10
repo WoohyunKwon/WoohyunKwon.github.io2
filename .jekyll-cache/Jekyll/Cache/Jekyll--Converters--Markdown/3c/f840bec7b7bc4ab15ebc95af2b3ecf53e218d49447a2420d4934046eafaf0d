@@ -1,0 +1,29 @@
+I"�<p>어떤 집단에 대한 정보를 알고 싶다고 가정하자. 이때 정보를 얻고자 하는 대상이 되는 개체의 집합을 <code class="language-plaintext highlighter-rouge">모집단(population)</code>이라 한다. 모집단의 평균(mean), 편차(derivation) 등 모집단을 조사하여 얻을수 있는 통계적인 특성치를 <code class="language-plaintext highlighter-rouge">모수(parameter)</code>라고 한다. 현실적으로 모든 집단을 조사하기는 불가능한 경우가 많으므로 모집단의 일부분을 추출단위에 따라 소수 집합으로 구분하여 조사를 하며, 이 모집단메서 분석 대상으로 관찰된 일부의 집합을 <code class="language-plaintext highlighter-rouge">표본(sample)</code>이라고 한다. 추출한 표본의 통계적인 특성치를 <code class="language-plaintext highlighter-rouge">통계량(statistic)</code>이라 한다.</p>
+
+<h2 id="평균-mean">평균 Mean</h2>
+
+<p>평균에는 산술평균(arithmetic mean), 기하평균(geometric mean), 조화평균(harmonic mean)이 있으며, 일반적으로 평균이라 하면 산술평균을 말한다. 데이터 집합의 중심 성향을 근사화하는데 사용되지만 이상치(outlier)에 영향을 큰 받는다.</p>
+
+<p>예를들어, 데이터 집합 $A={1,2,3,4,100}$이라면 (산술)평균은 22가 되며 이상치 100을 제거하면 (산술)평균은 2.5가 된다.</p>
+
+<h2 id="중앙값-median">중앙값 Median</h2>
+
+<p>중앙값(=중위수)은 데이터 집합이 크기순으로 정렬될 때 데이터 집합의 중간에 위치한 값이다. 이 값은 이상치(outlier)의 영향을 받지 않지만 데이터 집합의 실제 숫자에 대한 어떠한 표시도 제공하지 않는다. 따라서 극단적인 이상치가 존재한다면 중앙값이 평균값보다 유용하다.</p>
+
+<h2 id="확률-분포-probability-distribution">확률 분포 Probability Distribution</h2>
+
+<p><code class="language-plaintext highlighter-rouge">확률 분포(probability distribution)</code>에는 <code class="language-plaintext highlighter-rouge">이산확률분포(discrete probability distribution)</code>과 <code class="language-plaintext highlighter-rouge">연속확률분포(continuous probability distribution)</code>이 있다. 확률분포를 통해 수학적 가정을 할 수 있으며, 통계 검정에 사용할 수 있다. 표본의 크키가 클수록 확률 분포가 정규분포에 가까워지며(Fisher), 이는 표본의 크키가 큰 연구가 작은 연구에 비해 더 나은 결과를 얻을 수 있는 수학적 이유 중 하나가 된다.</p>
+
+<h2 id="분산-variance--표준편차-standard-deviation">분산 Variance / 표준편차 Standard Deviation</h2>
+
+<p><code class="language-plaintext highlighter-rouge">분산(variance)</code>는 확률변수가 평균(또는 기댓값)으로부터 얼마나 떨어진 곳에 분포하는지를 나타내는 숫자이다. 분산은 편차의 제곱의 평균을 통해 계산한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">표준편차(standard deviation)</code>은 분산의 제곱근이며, 분산과 마찬가지로 확률변수가 평균에서 얼마나 흩어져 있는지를 나타낸다. 표준편차는 데이터와 단위가 같기때문에 분산보다 선호하는 통계량이다.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>Ryan Winters, Andrew Winters and Ronald G. Amedee, “Statistics: A Brief Overview”, Ochsner Journal September 2010, 10 (3) 213-216;</li>
+  <li><a href="https://kostat.go.kr/understand/info/info_lge/1/detail_lang.action?bmode=detail_lang&amp;pageNo=4&amp;keyWord=0&amp;cd=SL4049&amp;sTt=">통계청, 통계용어및지표</a></li>
+</ul>
+:ET

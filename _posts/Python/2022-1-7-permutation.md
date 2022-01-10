@@ -60,7 +60,7 @@ print(list(permutations(['A', 'B', 'C'], 2)))
 
 중복조합(combinations with replacement)은 서로 다른 $n$개의 원소에서 중복을 허락하여 $k$개를 뽑는 경우를 말하며, 기호로는 다음과 같이 쓴다:
 
-$$nHk=_{k+(n-1)}{C}_{k}={k+(n-1) \choose k}$$
+$$nHk=_{k+(n-1)}C_k={k+(n-1) \choose k}$$
 
 ### 파이썬 중복조합 구현: `itertools.combinations_with_replacement`
 
