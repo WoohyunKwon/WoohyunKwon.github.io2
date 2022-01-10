@@ -11,7 +11,9 @@ use_math: true
 
 `조합(combination)`이란 서로 다른 $n$개의 원소에서 $k$개의 원소를 순서에 상관없이 선택하는 방법의 가짓수를 말하며, 그 값은 다음과 같다:
 
-$$nCk = {n \choose k} = {n! \over k!(n-k)!}$$
+$$
+nCk = {n \choose k} = {n! \over k!(n-k)!}
+$$
 
 ### 파이썬 조합 구현: `itertools.combinatios`
 
@@ -36,7 +38,9 @@ print(list(combinations(['A', 'B', 'C'], 2)))
 
 `순열(permutation)`이란 $n$개의 원소에서 $k$개의 원소를 골라 배열하는 방법의 가짓수을 말하며, 그 값은 다음과 같다:
 
-$$nPk=P(n,k)=n(n-1)...(n-k+1)$$
+$$
+nPk=P(n,k)=n(n-1)...(n-k+1)
+$$
 
 ### 파이썬 순열 구현: `itertools.permutaions`
 
@@ -61,7 +65,9 @@ print(list(permutations(['A', 'B', 'C'], 2)))
 
 중복조합(combinations with replacement)은 서로 다른 $n$개의 원소에서 중복을 허락하여 $k$개를 뽑는 경우를 말하며, 기호로는 다음과 같이 쓴다:
 
-$$nHk=_{k+(n-1)}C_k={k+(n-1) \choose k}$$
+$$
+nHk=_{k+(n-1)}C_k={k+(n-1) \choose k}
+$$
 
 ### 파이썬 중복조합 구현: `itertools.combinations_with_replacement`
 
