@@ -10,7 +10,7 @@ tags: [Python, 파이썬, 알고리즘, 유클리드 호제법, Euclidean Algori
 
 유클리드 호제법(Euclidean algorithm) 또는 유클리드 알고리즘은 2개의 양의 정수 또는 두 다항식의 최대공약수를 구하는 알고리즘의 하나이다. 정수에 대한 유클리드 호제법은 다음의 정리에 기인한다.
 
-$\forall a, b, r \in \mathbb{Z}$, $a$를 $b$로 나눈 나머지를 $r$라 하자(단, $0 \le r<b\le a$). $gcd(a,b)$가 두 정수 $a$, $b$의 최대공약수(greatest common divisor)라 하면 다음식이 성립한다.
+$ \forall a, b, r \in \mathbb{Z} $, $ a $를 $ b $로 나눈 나머지를 $r$라 하자(단, $0 \le r<b\le a$). $gcd(a,b)$가 두 정수 $a$, $b$의 최대공약수(greatest common divisor)라 하면 다음식이 성립한다.
 
 $$gcd(a,b) = gcd(b,r). $$
 
@@ -44,7 +44,7 @@ u   &=& G'(v'q+t')
 \end{matrix}
 $$
 
-이므로 $u$는 $G'$의 배수이므로 $u$와 $v$는 서로소라는 사실에 모순이 된다. 따라서 $(b,r)=G$이고,
+이므로 $u$ 는 $G'$의 배수이므로 $u$와 $v$는 서로소라는 사실에 모순이 된다. 따라서 $(b,r)=G$이고,
 
 $$gcd(a,b) = gcd(b,r)$$
 
