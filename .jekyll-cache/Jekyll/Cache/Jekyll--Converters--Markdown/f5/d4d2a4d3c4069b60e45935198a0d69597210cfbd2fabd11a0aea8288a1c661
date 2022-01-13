@@ -1,8 +1,10 @@
-I"�,<h2 id="조합combination">조합(combination)</h2>
+I"�,<h2 id="조합combination">조합(combination)</h2>
 
 <p><code class="language-plaintext highlighter-rouge">조합(combination)</code>이란 서로 다른 $n$개의 원소에서 $k$개의 원소를 순서에 상관없이 선택하는 방법의 가짓수를 말하며, 그 값은 다음과 같다:</p>
 
-<p>$$nCk = {n \choose k} = {n! \over k!(n-k)!}$$</p>
+<p>$$
+nCk = {n \choose k} = {n! \over k!(n-k)!}
+$$</p>
 
 <h3 id="파이썬-조합-구현-itertoolscombinatios">파이썬 조합 구현: <code class="language-plaintext highlighter-rouge">itertools.combinatios</code></h3>
 
@@ -26,7 +28,9 @@
 
 <p><code class="language-plaintext highlighter-rouge">순열(permutation)</code>이란 $n$개의 원소에서 $k$개의 원소를 골라 배열하는 방법의 가짓수을 말하며, 그 값은 다음과 같다:</p>
 
-<p>$$nPk=P(n,k)=n(n-1)…(n-k+1)$$</p>
+<p>$$
+nPk=P(n,k)=n(n-1)…(n-k+1)
+$$</p>
 
 <h3 id="파이썬-순열-구현-itertoolspermutaions">파이썬 순열 구현: <code class="language-plaintext highlighter-rouge">itertools.permutaions</code></h3>
 
@@ -50,7 +54,9 @@
 
 <p>중복조합(combinations with replacement)은 서로 다른 $n$개의 원소에서 중복을 허락하여 $k$개를 뽑는 경우를 말하며, 기호로는 다음과 같이 쓴다:</p>
 
-<p>$$nHk=_{k+(n-1)}C_k={k+(n-1) \choose k}$$</p>
+<p>$$
+nHk=_{k+(n-1)}C_k={k+(n-1) \choose k}
+$$</p>
 
 <h3 id="파이썬-중복조합-구현-itertoolscombinations_with_replacement">파이썬 중복조합 구현: <code class="language-plaintext highlighter-rouge">itertools.combinations_with_replacement</code></h3>
 
