@@ -1,0 +1,54 @@
+I"�<h2 id="문제">문제</h2>
+<p>어떤 자연수 N은 그보다 작거나 같은 제곱수들의 합으로 나타낼 수 있다. 예를 들어 11=32+12+12(3개 항)이다. 이런 표현방법은 여러 가지가 될 수 있는데, 11의 경우 11=22+22+12+12+12(5개 항)도 가능하다. 이 경우, 수학자 숌크라테스는 “11은 3개 항의 제곱수 합으로 표현할 수 있다.”라고 말한다. 또한 11은 그보다 적은 항의 제곱수 합으로 표현할 수 없으므로, 11을 그 합으로써 표현할 수 있는 제곱수 항의 최소 개수는 3이다.</p>
+
+<p>주어진 자연수 N을 이렇게 제곱수들의 합으로 표현할 때에 그 항의 최소개수를 구하는 프로그램을 작성하시오.</p>
+
+<h2 id="입력">입력</h2>
+<p>첫째 줄에 자연수 N이 주어진다. (1 ≤ N ≤ 100,000)</p>
+
+<h2 id="출력">출력</h2>
+<p>주어진 자연수를 제곱수의 합으로 나타낼 때에 그 제곱수 항의 최소 개수를 출력한다.</p>
+
+<h2 id="코드1-단순계산">코드1 단순계산</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">square</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="c1"># N이하의 제곱수
+</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 필요 최소 제곱수 개수
+</span>
+<span class="c1"># N이 0이 될 때까지 N보다 작은 제곱수를 뺀다
+</span><span class="k">while</span> <span class="n">N</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">N</span> <span class="o">&lt;</span> <span class="n">square</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">square</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">square</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>입력값 <code class="language-plaintext highlighter-rouge">N</code>을 기준으로 가장 큰 제곱수부터 빼서 계산을 해보았는데, 이 방법으로는 <span style="color:yellow">최적해를 구할 수 없다</span>.</p>
+
+<p>예를 들어 위의 코드로는 $18=4^2+1^2+1^2$으로 3개이지만 실제 제곱수항의 최소 개수는 $18=3^2+3^2$으로 2개이다.</p>
+
+<h2 id="코드2-동적계획법">코드2 동적계획법</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">square</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">square</span><span class="p">:</span>            <span class="c1"># 작은 제곱수부터 순차적으로 비교
+</span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>                 <span class="c1"># 제곱수(j)가 i보다 커지면 break
+</span>      <span class="k">break</span>
+    <span class="k">elif</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.acmicpc.net/problem/1699">백준 1699 제곱수의 합</a></li>
+</ul>
+:ET
