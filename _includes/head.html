@@ -2,6 +2,11 @@
 
 <html>
   <head>
+
+    {% if page.use_math %}
+      {% include mathjax_support.html %}
+    {% endif %}
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,9 +29,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
 
-    {% if page.use_math %}
-    {% include mathjax_support.html %}
-    {% endif %}
+
   </head>
 </html>
 
