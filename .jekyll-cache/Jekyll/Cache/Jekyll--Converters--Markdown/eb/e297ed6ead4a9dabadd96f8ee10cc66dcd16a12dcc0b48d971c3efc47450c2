@@ -1,0 +1,95 @@
+I"?<h2 id="문제">문제</h2>
+<p>오르막 수는 수의 자리가 오름차순을 이루는 수를 말한다. 이때, 인접한 수가 같아도 오름차순으로 친다.</p>
+
+<p>예를 들어, 2234와 3678, 11119는 오르막 수이지만, 2232, 3676, 91111은 오르막 수가 아니다.</p>
+
+<p>수의 길이 N이 주어졌을 때, 오르막 수의 개수를 구하는 프로그램을 작성하시오. 수는 0으로 시작할 수 있다.</p>
+
+<h2 id="입력">입력</h2>
+<p>첫째 줄에 N (1 ≤ N ≤ 1,000)이 주어진다.</p>
+
+<h2 id="출력">출력</h2>
+<p>첫째 줄에 길이가 N인 오르막 수의 개수를 10,007로 나눈 나머지를 출력한다.</p>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span> <span class="c1"># N=1 일때의 값을 미리 넣었다
+</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># N&gt;1 일때만 계산할 것이므로 range(N-1)로 계산
+</span>  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="o">%</span><span class="mi">10007</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">dp</code>의 인덱스(표의 헤더)와 <strong>N</strong>(표의 인덱스)에 따른 오르막 수의 개수는 다음 표와 같다. 즉, 길이가 N인 오르막 수의 개수는 헤더를 제외한 N행의 값의 합과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">dp</th>
+      <th style="text-align: center">0</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+      <th style="text-align: center">5</th>
+      <th style="text-align: center">6</th>
+      <th style="text-align: center">7</th>
+      <th style="text-align: center">8</th>
+      <th style="text-align: center">9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">10</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center">21</td>
+      <td style="text-align: center">28</td>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center">45</td>
+      <td style="text-align: center">55</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="https://www.acmicpc.net/problem/2775">백준 2775 부녀회장이 될테야</a>은 이 문제와 유사하므로 한번 확인해보기 바란다.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.acmicpc.net/problem/11057">백준 11057 오르막 수</a></li>
+  <li><a href="https://www.acmicpc.net/problem/2775">백준 2775 부녀회장이 될테야</a></li>
+</ul>
+:ET
