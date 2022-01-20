@@ -4,7 +4,6 @@ title: "[Mathematics] 유클리드 호제법 Euclidean Algorithm"
 author: Woohyun Kwon
 categories: [Mathematics]
 tags: [Python, 파이썬, 알고리즘, 유클리드 호제법, Euclidean Algorithm, 정수론, Number Theory, 대수학, Algebra]
-use_math: true
 ---
 
 ## 유클리드 호제법 Euclidean Algorithm
