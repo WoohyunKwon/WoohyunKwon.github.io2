@@ -23,13 +23,13 @@ $$a=Gu,\ b=Gv$$
 
 를 만족하는 서로 다른 두 정수 $u,v$가 존재하며 $u$와 $v$는 서로소이다.
 
-$$
+$
 \begin{matrix}
 a   &=& bq+r \\
 Gu  &=& Gvq + r \\
 r   &=& G(u-vq)
 \end{matrix}
-$$
+$
 
 따라서 $r$은 $G$의 배수이다. 
 
