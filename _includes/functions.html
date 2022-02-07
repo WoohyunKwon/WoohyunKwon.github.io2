@@ -21,9 +21,8 @@
 {%- endif -%}
 
 {%- if func != 'log' -%}
-  {%- assign msg = '[function]['
+  {%- assign msg = '[function]'
     | append: {{func}}
-    | append: '] '
     | append: {{return}}
     -%}
   {%- include functions.html func='log' level='info' -%}
