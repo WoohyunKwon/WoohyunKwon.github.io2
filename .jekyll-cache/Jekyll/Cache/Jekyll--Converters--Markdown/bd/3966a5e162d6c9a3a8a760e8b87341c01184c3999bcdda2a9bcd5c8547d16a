@@ -1,0 +1,74 @@
+I"<h2 id="파이썬-표준-라이브러리">파이썬 표준 라이브러리</h2>
+
+<p>파이썬에서는 기본 기능들 이외에도 프로그래밍하는데 필요한 클래스, 메소드, 상수들을 모듈로 지원하는데 이를 “표준라이브러리(Standard Library)”라고 한다. 자세한 사항은 <a href="https://docs.python.org/ko/3.10/library/index.html">파이썬 표준 라이브러리</a>를 참고하면 된다.</p>
+
+<h2 id="math">math</h2>
+
+<p><code class="language-plaintext highlighter-rouge">math</code> 모듈은 수학에 관련된 라이브러리이다. 삼각함수, 팩토리얼, 제곱근 등의 수학적 기능을 제공한다.</p>
+
+<ul>
+  <li>math.fabs(x) : 절대값(실수)</li>
+  <li>math.ceil(x) : 올림(정수)</li>
+  <li>math.floor(x) : 내림(정수)</li>
+  <li>math.gcd(x, y) : x,y의 최대공약수(정수)</li>
+  <li>math.factorial(x) : 팩토리얼</li>
+  <li>math.sqrt(x) : 제곱근</li>
+  <li>math.log10(x) : 밑을 10으로 하는 로그</li>
+  <li>math.log(x, base) : base를 밑으로 하는 x의 로그, base default: e</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">fabs</span><span class="p">(</span><span class="o">-</span><span class="mf">7.71</span><span class="p">))</span>  <span class="c1"># 7.71
+</span><span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">ceil</span><span class="p">(</span><span class="mf">3.14</span><span class="p">))</span>   <span class="c1"># 4
+</span><span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="o">-</span><span class="mf">17.2</span><span class="p">))</span> <span class="c1"># -18
+</span><span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">gcd</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>  <span class="c1"># 6
+</span><span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">49</span><span class="p">))</span>     <span class="c1"># 7.0
+</span><span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># 120
+</span><span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>  <span class="c1"># 3.0
+</span><span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>    <span class="c1"># 6.0
+</span></code></pre></div></div>
+
+<h2 id="itertools">itertools</h2>
+
+<p><code class="language-plaintext highlighter-rouge">itertools</code> 모듈은 효율적인 루핑을 위한 이터레이터를 만드는 함수이다. 그 중 다음의 조합형 이터레이터를 자주 사용한다.</p>
+
+<ul>
+  <li>permutations(A, n) : 순열, iterable 객체 A에서 n개의 원소를 뽑아 배열하는 방법의 가짓수</li>
+  <li>product(A, B, …) : 중복순열, iterable 객체 A, B, …에서 각각의 원소를 뽑아 배열하는 방법의 가짓수</li>
+  <li>combinations(A, n) : 조합, iterable 객체 A에서 중복없이 n개의 원소를 뽑는 방법의 가짓수</li>
+  <li>combinations_with_replacement(A, n): 중복조합, iterable 객체 A에서 중복을 허용하여 n개의 원소를 뽑는 방법의 가짓수</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">permutations</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="c1"># 결과: [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]
+</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">],</span> <span class="p">[</span><span class="s">'C'</span><span class="p">,</span> <span class="s">'D'</span><span class="p">])))</span>
+    <span class="c1"># 결과: [('A', 'C'), ('A', 'D'), ('B', 'C'), ('B', 'D')]
+</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="c1"># 결과: [('A', 'B'), ('A', 'C'), ('B', 'C')]
+</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations_with_replacement</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="c1"># 결과: [('A', 'A'), ('A', 'B'), ('A', 'C'), ('B', 'B'), ('B', 'C'), ('C', 'C')]
+</span></code></pre></div></div>
+
+<h2 id="heapq">heapq</h2>
+
+<p><code class="language-plaintext highlighter-rouge">heapq</code> 모듈은 heapq(priority queue) 알고리즘을 제공한다. 모든 부모 노드는 그의 자식 노드보다 값이 작거나 큰 이진트리(binary tree) 구조인데, 내부적으로는 인덱스 0에서 시작해 k번째 원소가 항상 자식 원소들(2k+1, 2k+2) 보다 작거나 같은 최소 힙의 형태로 정렬된다.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://docs.python.org/ko/3.10/library/index.html">파이썬 표준 라이브러리</a></li>
+  <li><a href="https://mjmjmj98.tistory.com/133">meeeeejin, 코딩 테스트를 위한 파이썬 라이브러리</a></li>
+</ul>
+:ET

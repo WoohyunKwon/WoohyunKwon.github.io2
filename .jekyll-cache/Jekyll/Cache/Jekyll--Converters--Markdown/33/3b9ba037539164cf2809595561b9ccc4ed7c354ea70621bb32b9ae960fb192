@@ -1,0 +1,24 @@
+I"�<h2 id="고윳값eigenvalue-고유벡터eigenvector">고윳값(eigenvalue), 고유벡터(eigenvector)</h2>
+
+<p>$$
+\begin{equation}
+\begin{aligned}
+f(x, y) &amp;= x^2 + \sqrt{y^3} <br />
+g(x) &amp;= x^3 + x^2 + 3x + 5
+\end{aligned}
+\end{equation}
+$$</p>
+
+<p>$\begin{equation}
+\begin{aligned}
+f(x, y) &amp;= x^2 + \sqrt{y^3} <br />
+g(x) &amp;= x^3 + x^2 + 3x + 5
+\end{aligned}
+\end{equation}$</p>
+
+<p>$$gcd(a,b) = gcd(b,r).$$</p>
+
+<p>$$
+gcd(a,b) = gcd(b,r).
+$$</p>
+:ET

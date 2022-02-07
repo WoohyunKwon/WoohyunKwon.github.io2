@@ -1,0 +1,111 @@
+I"�3<h2 id="iterable">Iterable</h2>
+
+<p><code class="language-plaintext highlighter-rouge">iterable</code> 객체는 반복 가능한 객체를 말하며, sequence type인 <code class="language-plaintext highlighter-rouge">list</code>, <code class="language-plaintext highlighter-rouge">dict</code>, <code class="language-plaintext highlighter-rouge">set</code>, <code class="language-plaintext highlighter-rouge">str</code>, <code class="language-plaintext highlighter-rouge">tuple</code>, <code class="language-plaintext highlighter-rouge">range</code>가 대표적이다.</p>
+
+<h2 id="iterator">Iterator</h2>
+
+<p><code class="language-plaintext highlighter-rouge">iterator</code> 객체는 값을 차례대로 꺼낼 수 있는 객체이다. <code class="language-plaintext highlighter-rouge">iterator</code>는 <code class="language-plaintext highlighter-rouge">iterable</code>한 객체를 내장함수 또는 <code class="language-plaintext highlighter-rouge">iterable</code> 객체의 메소드로 객체를 생성할 수 있다. 파이썬 내장함수 <code class="language-plaintext highlighter-rouge">iter()</code>를 사용해 iterator 객체를 만들 수 있다.</p>
+
+<h2 id="컴프리헨션comprehension">컴프리헨션(Comprehension)</h2>
+
+<p>파이썬에서는 하나 이상의 이터레이터(iterator)로부터 파이썬의 자료구조(<code class="language-plaintext highlighter-rouge">list</code>, <code class="language-plaintext highlighter-rouge">set</code>, <code class="language-plaintext highlighter-rouge">dictionary</code>, <code class="language-plaintext highlighter-rouge">tuple</code>)을 보다 간단하게 작성할 수 있는 <code class="language-plaintext highlighter-rouge">컴프리헨션</code>이라는 문법을 지원한다.</p>
+
+<h2 id="list-comprehension">List Comprehension</h2>
+
+<p>리스트를 생성하는 컴프리헨션을 리스트 컴프리헨션(List Comprehension)이라고 한다. 리스트 컴프리헨션을 통해 1~100까지 정수 리스트를 생성하는 방법은 다음과 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">기본</span> <span class="k">for</span> <span class="n">문</span><span class="o">&gt;</span>
+<span class="n">numlst</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="n">numlst</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="c1"># 결과: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</span>
+<span class="o">&lt;</span><span class="n">리스트</span> <span class="n">컴프리헨션</span><span class="o">&gt;</span>
+<span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
+<span class="c1"># 결과: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</span></code></pre></div></div>
+
+<h3 id="조건문-여러-반복문">조건문: 여러 반복문</h3>
+
+<p>다음은 여러 반복문이 사용된 예이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'A'</span><span class="p">,</span><span class="s">'B'</span><span class="p">,</span><span class="s">'C'</span><span class="p">]]</span>
+<span class="c1"># 결과: ['A', 'B', 'C', 'AA', 'BB', 'CC', 'AAA', 'BBB', 'CCC']
+</span></code></pre></div></div>
+
+<h3 id="조건문-if">조건문: if</h3>
+
+<p>if문은 for문의 오른쪽, if-else문은 for문의 왼쪽에 사용해야한다.</p>
+
+<p>1~20까지의 정수 중 짝수만 출력하는 예를 보면 다음과 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># 결과: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+</span></code></pre></div></div>
+
+<h3 id="조건문-if-else">조건문: if-else</h3>
+
+<p>if문은 for문의 오른쪽, if-else문은 for문의 왼쪽에 사용해야한다.</p>
+
+<p>1~10까지의 정수 중 &lt;if 짝수이면 출력 else 아니면 ‘X’ 출력&gt;하는 예를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">i</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="s">'X'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
+<span class="c1"># 결과: ['X', 2, 'X', 4, 'X', 6, 'X', 8, 'X', 10]
+</span></code></pre></div></div>
+
+<p>컴프리헨션에서 elif를 바로 사용할 수는 없지만 if-else를 통해 표현할 수 있다.</p>
+
+<p>1~20까지의 정수 중 &lt;if 짝수이면 출력 elif 9이면 출력 else 아니면 ‘X’ 출력&gt;하는 예를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">i</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="n">i</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">9</span> <span class="k">else</span> <span class="s">'X'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
+<span class="c1"># 결과: ['X', 2, 'X', 4, 'X', 6, 'X', 8, 9, 10]
+</span></code></pre></div></div>
+
+<h2 id="set-comprehension">Set Comprehension</h2>
+
+<p>리스트 컴프리헨션과 만드는 방법은 거의 동일하며 대괄호(<code class="language-plaintext highlighter-rouge">[]</code>)대신 중괄호(<code class="language-plaintext highlighter-rouge">{}</code>)를 이용하면 셋 컴프리헨션이 된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">List</span> <span class="n">Comprehension</span><span class="o">&gt;</span>
+<span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="c1"># 결과: [0, 1, 2, 3, 4, 1, 2, 3, 4, 5, 2, 3, 4, 5, 6, 3, 4, 5, 6, 7, 4, 5, 6, 7, 8]
+</span>
+<span class="o">&lt;</span><span class="n">Set</span> <span class="n">Comprehension</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)}</span>
+<span class="c1"># 결과: {0, 1, 2, 3, 4, 5, 6, 7, 8}
+</span></code></pre></div></div>
+
+<h2 id="dictionary-comprehension">Dictionary Comprehension</h2>
+
+<p><code class="language-plaintext highlighter-rouge">{key: value}</code>의 형태를 이용하면 <code class="language-plaintext highlighter-rouge">Dictionary Comprehension</code>을 만들 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s">'철수'</span><span class="p">,</span><span class="s">'영희'</span><span class="p">,</span><span class="s">'길동'</span><span class="p">,</span><span class="s">'순희'</span><span class="p">]</span>
+<span class="n">score</span> <span class="o">=</span> <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
+
+<span class="o">&lt;</span><span class="n">이름과</span> <span class="n">점수</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">score</span><span class="p">)}</span>
+<span class="c1"># 결과: {'길동': 90, '순희': 70, '영희': 60, '철수': 55}
+</span>
+<span class="o">&lt;</span><span class="n">이름과</span> <span class="k">pass</span><span class="o">/</span><span class="n">fail</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="s">'pass'</span> <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">60</span> <span class="k">else</span> <span class="s">'fail'</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">score</span><span class="p">)}</span>
+<span class="c1"># 결과: {'길동': 'pass', '순희': 'pass', '영희': 'pass', '철수': 'fail'}
+</span></code></pre></div></div>
+
+<h2 id="tuple-comprehension--generator">Tuple Comprehension / Generator</h2>
+
+<p>소괄호(<code class="language-plaintext highlighter-rouge">()</code>)를 쓰면 튜플 컴프리헨션이 만들어질까? 결과적으로 <code class="language-plaintext highlighter-rouge">generator</code>가 만들어진다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+<span class="c1"># 결과: &lt;generator object &lt;genexpr&gt; at 0x7f57bf54e8d0&gt;
+</span></code></pre></div></div>
+
+<p>제너레이터(Generator)는 이터레이터(Iterator)를 생성해주는 함수이다. 이터레이터는 클래스에 <code class="language-plaintext highlighter-rouge">__iter__</code>, <code class="language-plaintext highlighter-rouge">__next__</code> 또는 <code class="language-plaintext highlighter-rouge">__getitem__</code> 메서드를 구현해야 하지만 제너레이터는 함수 안에서 <code class="language-plaintext highlighter-rouge">yield</code>라는 키워드만 사용하면된다. 그래서 제너레이터는 이터레이터보다 훨씬 간단하게 작성할 수 있다.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://wikidocs.net/22800">위키독스, 제대로 파이썬</a></li>
+  <li><a href="https://wikidocs.net/16069">위키독스, 파이썬 - 기본을 갈고 닦자!</a></li>
+  <li><a href="https://wikidocs.net/74399">위키독스, 레벨업 파이썬</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Generator_(computer_programming)">위키피디아, generator</a></li>
+</ul>
+:ET

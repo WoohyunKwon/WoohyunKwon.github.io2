@@ -1,0 +1,40 @@
+I"�<h2 id="덱deque">덱(Deque)</h2>
+
+<p>덱(deque)는 Double-Ended Queue의 줄임말로 데이터의 양쪽 끝에서 삽입과 삭제가 모두 가능한 자료 구조의 한 형태이다. 스택(stack)과 큐(queue)를 합친 형태로 생각할 수 있다.</p>
+
+<h2 id="덱deque의-연산">덱(Deque)의 연산</h2>
+
+<p><img src="https://media.vlpt.us/images/seochan99/post/544198b5-f94a-4939-a909-de2704cf9a91/%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%AB%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3.jpeg" alt="덱" /></p>
+
+<div style="text-align: right">
+출처: seochan99, [자료구조]문제 7-1[덱을 기반으로 큐를 구현하기]
+</div>
+
+<ul>
+  <li>add_front(x) : 요소 x를 덱의 맨 앞에 추가</li>
+  <li>add_rear(x) : 요소 x를 덱의 맨 뒤에 추가</li>
+  <li>delete_front() : 큐의 맨 앞의 요소를 삭제하고 반환</li>
+  <li>delete_rear() : 큐의 맨 뒤의 요소를 삭제하고 반환</li>
+  <li>get_front() : 큐의 맨 앞의 요소를 삭제하지 않고 반환</li>
+  <li>get_rear() : 큐의 맨 뒤의 요소를 삭제하지 않고 반환</li>
+  <li>isEmpty() : 큐가 비어있으면 true 아니면 false 반환</li>
+  <li>isFull() : 큐가 가득 차 있으면 true 아니면 false 반환</li>
+  <li>size() : 큐 내의 모든 요소 개수를 반환</li>
+  <li>display() : 큐 내의 모든 요소 출력</li>
+</ul>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+  <li><a href="https://woohyunkwon.github.io/algorithm/&amp;/data/structure/2022/01/01/Data-Structure.html">자료구조 정리</a></li>
+  <li><a href="https://woohyunkwon.github.io/data%20structure/2022/01/01/Stack.html">스택(stack)</a></li>
+  <li><a href="https://woohyunkwon.github.io/data%20structure/2022/01/29/queue.html">큐(Queue)</a></li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://ko.wikipedia.org/wiki/%EB%8D%B1_(%EC%9E%90%EB%A3%8C_%EA%B5%AC%EC%A1%B0)">위키백과, 덱</a></li>
+  <li><a href="https://suyeon96.tistory.com/24">Suyeon’s Blog, [자료구조] 덱 (Deque)</a></li>
+</ul>
+:ET
